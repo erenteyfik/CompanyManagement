@@ -1,0 +1,122 @@
+﻿@model CompanyManagement.Data.Entities.Project
+@{
+    ViewBag.Title = "CPCreate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #customerinput{
+        width:100%;
+    }
+    #cpspan {
+        font-size: 12px;
+        float:right;
+    }
+</style>
+<div class="main-container">
+    <h2>Proje Ekle</h2>
+    <div class="row" id="headrow">
+        <div class="m-portlet" style="width:100%">
+            <!--begin::Form-->
+            @using (Html.BeginForm("CPCreate", "Project", null, FormMethod.Post, new { @class = "m-form m-form--label-align-right" }))
+            {
+            <div class="m-portlet__body">
+                  <div class="m-form__section m-form__section--first">
+
+                    <div class="form-group m-form__group row">
+
+                        <div class="col-md-6">
+                            <div class="row" id="projectrow">
+                                <label class="col-lg-4 col-form-label">
+                                    <span id="cpspan">PROJE BAŞLIĞI :</span>
+                                </label>
+                                <div class="col-lg-8" style="">
+                                    @Html.TextBoxFor(model => model.Title, new { @required = true, @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "Proje Başlığı", @id = "customerinput" })
+
+                                </div>
+                            </div>
+
+                            <div class="row" id="projectrow">
+                                <label class="col-lg-4 col-form-label" style="float:right">
+                                    <span id="cpspan">BAŞLAMA TARİHİ :</span>
+                                </label>
+                                <div class="col-lg-8">
+
+                                    @Html.TextBoxFor(model => model.Start, "{0:dd-MMMM-yyyy}", new { @required = true, @class = "form-control m-input m-input--solid createtimepicker", @type = "text", @placeholder = "Başlangıç Tarihi Seç", @id = "customerinput" })
+                                </div>
+                            </div>
+                            <div class="row" id="projectrow">
+                                <label class="col-lg-4 col-form-label">
+                                    <span id="cpspan">MÜŞTERİ | TEDARİKÇİ :</span>
+                                </label>
+                                <div class="col-lg-8" style="">
+                                    @Html.DisplayFor(model => model.CustomerUserName, new { @class = "form-control m-input m-input--solid", @id = "customerinput", @placeholder = "MÜŞTERİ | TEDARİKÇİ ADI", @type = "text", @style="margin-top:1px;" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="margin-left:-100px">
+                            <div class="row" id="projectrow">
+                                <label class="col-lg-4 col-form-label">
+                                    <span id="cpspan">Proje Durumu :</span>
+                                </label>
+                                <div class="col-lg-8" style="">
+                                    @Html.EnumDropDownListFor(model => model.ProjectState, "Proje Durumu Seç", new { @class = "form-control m-input m-input--solid", @id = "customerinput", @style = "" })
+
+                                </div>
+                            </div>
+
+                            <div class="row" id="projectrow">
+                                <label class="col-lg-4 col-form-label">
+                                    <span id="cpspan">BİTİŞ TARİHİ :</span>
+                                </label>
+                                <div class="col-lg-8">
+                                    @Html.TextBoxFor(model => model.End, "{0:dd-MMMM-yyyy}", new { @required = true, @class = "form-control m-input m-input--solid createtimepicker", @type = "text", @placeholder = "Bitiş Tarihi Seç", @id = "customerinput" })
+                                </div>
+                            </div>
+
+
+                            <div class="row" id="projectrow">
+                                <label class="col-lg-4 col-form-label">
+                                    <span id="cpspan">SORUMLULAR :</span>
+                                </label>
+                                <div class="col-lg-8">
+                                    @Html.TextBoxFor(model => model.Sorumluenumolacak, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "Projeye Sorumlu Ekleyin", @id = "customerinput" })
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <label class="col-lg-2 col-form-label">
+                            <span id="cpspan">AÇIKLAMA :</span>
+                        </label>
+                        <div class="col-lg-9">
+                            @Html.TextAreaFor(model => model.Description, new { @class = "summernote", @type = "text", @placeholder = "", @id = "m_summernote_1", @style = "margin-left:200px" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <div class="m-portlet__foot m-portlet__foot--fit">
+                    <div class="m-form__actions m-form__actions">
+                        <div class="row">
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-6">
+                                <button type="submit" class="btn btn-primary">
+                                    KAYDET
+                                </button>
+                                <button class="btn btn-secondary">
+                                    DOSYA EKLE
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <!--end::Form-->
+        </div>
+
+    </div>
+
+</div>
+

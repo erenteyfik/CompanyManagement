@@ -1,0 +1,299 @@
+﻿
+@{
+    ViewBag.Title = "BDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #headrow, #tablerow, #footerrow {
+        margin-top: 10px;
+        width: 100%;
+        border-radius: 0.25rem;
+        margin-left: -15px;
+    }
+
+    .main-container {
+        width: 100%;
+        margin-top: 30px;
+        margin-left: 30px;
+        color: #565656;
+        font-weight: 700;
+    }
+
+    h2 {
+        font-weight: 600;
+        font-size: 24px;
+        margin-bottom: 20px
+    }
+
+    h3 {
+        float: left;
+        width: 100%;
+        font-size: 16px;
+        color: #0373c3;
+        font-weight: 700;
+        margin-top: 35px;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+    }
+
+    .item1_detail, #item1_title {
+        border-bottom: 2px solid #f5f5f5;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    #item1 {
+        background-color: white;
+        margin-top: -10px
+    }
+
+    .item1-desc {
+        margin-left: 10px;
+    }
+
+    .item1_body {
+        color: #888888;
+        line-height: 24px;
+        font-size: 16px;
+    }
+
+    #item1_hr {
+    }
+
+    .bakiyebtn, .bakiyebtn:hover {
+        width: 300px;
+        color: #00c5dc;
+        background-color: white;
+        margin: 10px 10px;
+    }
+
+    .bakiye_body {
+        text-align: center;
+    }
+
+    .invoice-payment {
+        float: right;
+        font-size: 15px;
+        font-weight: 700;
+        color: white;
+    }
+
+    .invoice-a, .invoice-a:hover {
+        text-decoration: none;
+        outline: 0;
+        color: white;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    .task-div {
+        margin-left: -30px;
+        border-bottom: 2px solid #f5f5f5;
+        padding: 10px 10px;
+    }
+
+    td {
+        color: #888888;
+        line-height: 24px;
+        font-size: 14px;
+    }
+
+    th {
+        font-size: 16px;
+        color: #0373c3;
+        font-weight: 700;
+    }
+</style>
+
+<div class="main-container">
+
+    <h2 style="margin-left:30px">sadsa Faturası</h2>
+    <div class="main-search">
+
+
+        <div class="row" id="headrow">
+            <div class="col-xl-8">
+
+                <div class="m-content" style="">
+
+                    <div class="m-portlet m-portlet--mobile">
+                        <div class="m-portlet__body">
+                            <!--begin: Search Form -->
+                            <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
+                                <div class="row align-items-center">
+                                    <div class="col-xl-8 order-2 order-xl-1">
+
+                                        <span style="font-size:16px;font-weight:700;color:#0373c3">Müşteri : dsad</span>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <!--end: Search Form -->
+                            <!--begin: Datatable -->
+                            <table class="table table-striped" id="">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            HİZMET / ÜRÜN
+                                        </th>
+                                        <th>
+                                            AÇIKLAMA
+                                        </th>
+                                        <th>
+                                            MİKTAR
+                                        </th>
+                                        <th>
+                                            BİRİM FİYAT
+                                        </th>
+                                        <th>VERGİ</th>
+                                        <th>TOPLAM</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>dasdsa</td>
+                                        <td>-</td>
+                                        <td>1</td>
+                                        <td>100</td>
+                                        <td>18</td>
+                                        <td>118</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!--end: Datatable -->
+                            <div class="" style="margin-left:450px">
+                                <div style="border-bottom: 1px solid #ddd;"><h4>ARA TOPLAM : 100,00</h4></div>
+                                <div style="border-bottom: 1px solid #ddd;"><h4>TOPLAM KDV : 18,00</h4></div>
+                                <div style="border-bottom: 1px solid #ddd;"><h4>GENEL TOPLAM : 118,00</h4></div>
+                                <div style="border-bottom: 1px solid #ddd;"><h4>KALAN TUTAR : 118,00</h4> </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="m-portlet " id="item1" style="margin-left: 30px;">
+                    <div class="row" style="text-align:center" id="item1_title">
+                        <div class="col-md-6">
+                            <div class="">
+                                <h3 class="" style="margin-left:-130px">
+                                    Hesap Notu Ekle
+                                </h3>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="m-portlet__body">
+                        <div class="m-widget16">
+                            <div class="summernote" id="m_summernote_1" style="margin-left:200px"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="col-xl-4" style="margin-top:30px">
+
+
+
+                <div class="m-portlet m--bg-danger m-portlet--bordered-semi m-portlet--skin-dark" style="">
+                    <div class="m-portlet__head" style=" border-bottom: 2px solid #f5f5f5;">
+                        <div class="row">
+                            <div class="m-portlet__head-title col-md-9">
+                                <h3 class="m-portlet__head-text">
+                                    Detaylar
+                                </h3>
+
+                            </div>
+                            <div class="col-md-3" style="text-align:center;margin-top:25px;font-size:20px;color:white">
+                                <button class="btn btn-default">İŞLEMLER</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="m-portlet__body">
+                        <ul style="border-bottom: 1px solid #ddd;">
+                            <li class="">
+                                <div class="invoice-div">
+                                    <span class="flaticon-list-2" style="margin-left:-30px"></span>
+                                    <a href="#" class="invoice-a">
+                                        <span>Kalan Tutar</span>
+                                    </a>
+                                    <div class="invoice-payment">
+                                        <span>333,33</span>
+                                        <span class="fa fa-try"></span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <ul style="border-bottom: 1px solid #ddd;">
+                            <li class="">
+                                <div class="invoice-div">
+                                    <span class="flaticon-list-2" style="margin-left:-30px"></span>
+                                    <a href="#" class="invoice-a">
+                                        <span>Son Satış Fatura1</span>
+                                    </a>
+                                    <div class="invoice-payment">
+                                        <span class="fa fa-try"></span>
+                                        <span>333,33</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <ul style="border-bottom: 1px solid #ddd;">
+                            <li class="">
+                                <div class="invoice-div">
+                                    <span class="flaticon-list-2" style="margin-left:-30px"></span>
+                                    <a href="#" class="invoice-a">
+                                        <span>Son Satış Fatura1</span>
+                                    </a>
+                                    <div class="invoice-payment">
+                                        <span class="fa fa-try"></span>
+                                        <span>333,33</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="m-portlet  m-portlet--bordered-semi m-portlet--border-bottom-metal" style="height:230px">
+                    <div class="m-portlet__head" style=" border-bottom: 2px solid #f5f5f5;">
+                        <div class="row">
+                            <div class="m-portlet__head-title col-md-9">
+                                <h3 class="m-portlet__head-text">
+                                    SON HAREKETLER
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                        <ul>
+                            <li class="">
+                                <div class="invoice-div">
+                                    <span class="flaticon-list-2" style="margin-left:-30px"></span>
+                                    <a href="#" class="invoice-a">
+                                        <span style="color:black;">Son Satış Fatura1</span>
+                                    </a>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+

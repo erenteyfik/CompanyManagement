@@ -1,0 +1,931 @@
+﻿@model CompanyManagement.Web.Models.CustomerDetailModel
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #headrow, #tablerow, #footerrow {
+        margin-top: 10px;
+        width: 100%;
+        border-radius: 0.25rem;
+        margin-left: -15px;
+    }
+
+    .main-container {
+        width: 100%;
+        margin-top: 30px;
+        margin-left: 30px;
+        color: #565656;
+        font-weight: 700;
+    }
+
+    h2 {
+        font-weight: 600;
+        font-size: 24px;
+        margin-bottom: 20px
+    }
+
+    h3 {
+        float: left;
+        width: 100%;
+        font-size: 16px;
+        color: #0373c3;
+        font-weight: 700;
+        margin-top: 35px;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+    }
+
+    .item1_detail, #item1_title {
+        border-bottom: 2px solid #f5f5f5;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    #item1 {
+        background-color: white;
+        margin-top: -10px
+    }
+
+    .item1-desc {
+        margin-left: 10px;
+    }
+
+    .item1_body {
+        color: #888888;
+        line-height: 18px;
+        font-size: 15px;
+    }
+
+    #item1_hr {
+    }
+
+
+
+    .bakiye_body {
+        text-align: center;
+    }
+
+    .invoice-payment {
+        float: right;
+        font-size: 15px;
+        font-weight: 700;
+        color: white;
+    }
+
+    .invoice-a, .invoice-a:hover, .interview-a, .interview-a:hover {
+        text-decoration: none;
+        outline: 0;
+        color: white;
+    }
+
+
+    ul {
+        list-style: none;
+    }
+
+    .task-div {
+        margin-left: -30px;
+        border-bottom: 2px solid #f5f5f5;
+        padding: 10px 10px;
+    }
+
+    td {
+        color: #888888;
+        line-height: 24px;
+        font-size: 14px;
+    }
+
+    th {
+        font-size: 16px;
+        color: #0373c3;
+        font-weight: 700;
+    }
+
+    #spandisplay {
+        margin-left: 10px;
+    }
+
+
+
+   
+</style>
+
+<div class="main-container">
+
+    <h2>@Model.customer.UserName</h2>
+    <div class="main-search">
+
+
+        <div class="row" id="headrow">
+            <div class="col-xl-8">
+
+                <div class="m-portlet " id="item1" style="">
+                    <div class="row" style="text-align:center" id="item1_title">
+                        <div class="col-md-6">
+                            <div class="">
+                                <h3 class="" style="margin-left:-40px">
+                                    MÜŞTERİ | TEDARİKÇİ BİLGİLERİ
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div style="margin-left:200px;margin-top:30px">
+                                @*<span class="flaticon-speech-bubble" data-dropdown-toggle="hover" aria-expanded="true"></span>
+                                    <span class="flaticon-edit" data-dropdown-toggle="hover" aria-expanded="true"></span>
+                                    <span class="fa fa-trash-o" data-dropdown-toggle="hover" aria-expanded="true"></span>*@
+
+                                <a href="/Customer/Edit/@Model.customer.Id" class="btn btn-sm" style="color:#0373c3;background-color:white">
+                                    <span class="flaticon-edit" data-dropdown-toggle="hover" aria-expanded="true"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                        <div class="m-widget16" style="margin-top:-10px">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="item1_body">
+
+                                        <div class="item1_detail">
+                                            <label class="item1-head">
+                                                Yetkili Kişi
+                                            </label>
+                                            <span id="spandisplay">
+                                                <span id="itemspan">:</span>
+                                                <span id="itemspan2">
+                                                    @Html.DisplayFor(model => model.customer.AuthorizedPerson, new { @class = "item1-desc" })
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div class="item1_detail">
+                                            <label class="item1-head">
+                                                Cep Tel
+                                            </label>
+                                            <span id="spandisplay">
+                                                <span id="itemspan">:</span>
+                                                <span id="itemspan2">
+                                                    @Html.DisplayFor(model => model.customer.Phone, new { @class = "item1-desc" })
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div class="item1_detail">
+                                            <label class="item1-head">
+                                                E-Posta
+                                            </label>
+                                            <span id="spandisplay">
+                                                <span id="itemspan">:</span>
+                                                <span id="itemspan2">
+                                                    @Html.DisplayFor(model => model.customer.Email, new { @class = "item1-desc" })
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div class="item1_detail">
+                                            <label class="item1-head">
+                                                İl
+                                            </label>
+                                            <span id="spandisplay">
+                                                <span id="itemspan">:</span>
+                                                <span id="itemspan2">
+                                                    @Html.DisplayFor(model => model.customer.Province, new { @class = "item1-desc" })
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div class="item1_detail">
+                                            <label class="item1-head">
+                                                Vergi Dairesi
+                                            </label>
+                                            <span id="spandisplay">
+                                                <span id="itemspan">:</span>
+                                                <span id="itemspan2">
+                                                    @Html.DisplayFor(model => model.customer.TaxOffice, new { @class = "item1-desc" })
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div class="item1_detail">
+                                            <label class="item1-head">
+                                                Banka İsmi
+                                            </label>
+                                            <span id="spandisplay">
+                                                <span id="itemspan">:</span>
+                                                <span id="itemspan2">
+                                                    @Html.DisplayFor(model => model.customer.BankName, new { @class = "item1-desc" })
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div class="item1_detail">
+                                            <label class="item1-head">
+                                                Banka İban
+                                            </label>
+                                            <span id="spandisplay">
+                                                <span id="itemspan">:</span>
+                                                <span id="itemspan2">
+                                                    @Html.DisplayFor(model => model.customer.IBANno, new { @class = "item1-desc" })
+                                                </span>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="item1_body">
+
+                                        <div class="item1_detail">
+                                            <label class="item1-head">
+                                                Telefon
+                                            </label>
+                                            <span id="spandisplay">
+                                                <span id="itemspan">:</span>
+                                                <span id="itemspan2">
+                                                    @Html.DisplayFor(model => model.customer.Phone, new { @class = "item1-desc" })
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div class="item1_detail">
+                                            <label class="item1-head">
+                                                Fax
+                                            </label>
+                                            <span id="spandisplay">
+                                                <span id="itemspan">:</span>
+                                                <span id="itemspan2">
+                                                    @Html.DisplayFor(model => model.customer.FaxNo, new { @class = "item1-desc" })
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div class="item1_detail">
+                                            <label class="item1-head">
+                                                Adres
+                                            </label>
+                                            <span id="spandisplay">
+                                                <span id="itemspan">:</span>
+                                                <span id="itemspan2">
+                                                    @Html.DisplayFor(model => model.customer.Address, new { @class = "item1-desc" })
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div class="item1_detail">
+                                            <label class="item1-head">
+                                                İlçe
+                                            </label>
+                                            <span id="spandisplay">
+                                                <span id="itemspan">:</span>
+                                                <span id="itemspan2">
+                                                    @Html.DisplayFor(model => model.customer.District, new { @class = "item1-desc" })
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div class="item1_detail">
+                                            <label class="item1-head">
+                                                Vergi NO
+                                            </label>
+                                            <span id="spandisplay">
+                                                <span id="itemspan">:</span>
+                                                <span id="itemspan2">
+                                                    @Html.DisplayFor(model => model.customer.TaxorTCNo, new { @class = "item1-desc" })
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div class="item1_detail">
+                                            <label class="item1-head">
+                                                İnternet Sitesi
+                                            </label>
+                                            <span id="spandisplay">
+                                                <span id="itemspan">:</span>
+                                                <span id="itemspan2">
+                                                    @Html.DisplayFor(model => model.customer.WebAddress, new { @class = "item1-desc" })
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div class="item1_detail">
+                                            <label class="item1-head">
+                                                Bakiye
+                                            </label>
+                                            <span id="spandisplay">
+                                                <span id="itemspan">:</span>
+                                                <span id="itemspan2" style="font-size:24px;font-weight:700;color:red">
+                                                    @Html.DisplayFor(model => model.customer.Budget, new { @class = "item1-desc" })
+                                                </span>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="" id="item2">
+                    <div class="m-portlet" style="width:100%">
+                        <div class="m-portlet__body">
+                            <!--begin: Search Form -->
+                            <div class="m-form m-form--label-align-right" style="border-bottom: 2px solid #f5f5f5;">
+                                <div class="row align-items-center" style="margin-top:-20px">
+                                    <div class="col-xl-8 order-2 order-xl-1">
+                                        <div class="form-group m-form__group row align-items-center">
+                                            <div class="col-md-12" >
+                                                <div class="m-input-icon m-input-icon--left">
+                                                    <h3 class="" style="margin-left:0px">
+                                                        MÜŞTERİ | TEDARİKÇİ HESAP HAREKETLERİ
+                                                    </h3>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!--end: Search Form -->
+                            <!--begin: Datatable -->
+                            <table class="mytable" id="mytablecustomer" >
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            İŞLEM TARİHİ
+                                        </th>
+                                        <th>
+                                            İŞLEM TÜRÜ
+                                        </th>
+                                        <th>
+                                            TUTARI
+                                        </th>
+
+
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var invoice in Model.OutGoings)
+                                    {
+                                        <tr>
+                                            <td>@invoice.CreateTime.Value.ToString("dd-MM-yyyy")</td>
+                                            <td>Satış Faturası</td>
+                                            <td>@invoice.GenelToplam</td>
+
+                                            <td>
+                                                <a href="@Url.Action("CDelete", "Invoice", new { id = invoice.Id })" class="btn btn-sm btn-danger">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                    @foreach (var invoice in Model.Incomings)
+                                    {
+                                        <tr>
+                                            <td>@invoice.CreateTime.Value.ToString("dd-MM-yyyy")</td>
+                                            <td>Alış Faturası</td>
+                                            <td>@invoice.GenelToplam</td>
+
+                                            <td>
+                                                <a href="@Url.Action("CDelete", "Invoice", new { id = invoice.Id })" class="btn btn-sm btn-danger">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                    @foreach (var payment in Model.PIncomings)
+                                    {
+                                        <tr>
+                                            <td>@payment.CreateTime.ToString("dd-MM-yyyy")</td>
+                                            <td>Tahsilat</td>
+                                            <td>@payment.Total</td>
+
+                                            <td>
+                                                <a href="@Url.Action("CDelete", "Payment", new { id = payment.Id })" class="btn btn-sm btn-danger">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                    @foreach (var payment in Model.POutGoings)
+                                    {
+                                        <tr>
+                                            <td>@payment.CreateTime.ToString("dd-MM-yyyy")</td>
+                                            <td>Ödeme</td>
+                                            <td>@payment.Total</td>
+
+                                            <td>
+                                                <a href="@Url.Action("CDelete", "Payment", new { id = payment.Id })" class="btn btn-sm btn-danger">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                            <!--end: Datatable -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="m-portlet " id="item3">
+                    <div class="row" style="text-align:center" id="item1_title">
+                        <div class="col-md-6">
+                            <div class="">
+                                <h3 class="" style="margin-left:-30px">
+                                    Müşteri | Tedarikçi Notu Ekle
+                                </h3>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="m-portlet__body">
+                        <div class="m-widget16">
+                            @using (Html.BeginForm("CRCreate", "Remind", null, FormMethod.Post, new { @class = "m-form m-form--label-align-right" }))
+                            {
+                                @Html.HiddenFor(model => model.customer.Id)
+
+                                <div class="form-group m-form__group row">
+                                    <label class="col-lg-2 col-form-label">
+                                        NOT BAŞLIĞI :
+                                    </label>
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(model => model.remind.Title, new {  @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "Not Başlığı", @id = "", @style = "width:111%" })
+                                    </div>
+                                </div>
+
+                                @Html.TextAreaFor(model => model.remind.Description, new { @class = "summernote", @type = "text", @placeholder = "Not Ekleyebilirsiniz", @id = "m_summernote_1" })
+
+                                <button type="submit" class="btn btn-primary" style="float:right;margin-top:10px">KAYDET</button>
+                            }
+                        </div>
+                        <div>
+                            <div class="remind_body">
+                                <ul>
+                                    @foreach (var remind in Model.reminds)
+                                    {
+                                        <li class="remind_li" style="margin: 20px 20px">
+                                            <div class="row">
+                                                <div class="col-md-11">
+                                                    <div>
+                                                        <span>@remind.WhoUser</span>
+                                                        <span>@remind.CreateTime.ToString("dd-MM-yyyy")</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <span>@remind.Title</span>
+                                                    </div>
+                                                    <div>
+                                                        <div class="">
+                                                            <span>@Html.Raw(remind.Description)</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="" style="">
+                                                        <a href="@Url.Action("CDelete", "Remind", new { id = remind.Id })" class="btn btn-sm btn-danger">
+                                                            <i class="fa fa-trash-o"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-xl-4" style="margin-top:10px">
+
+                <div class="m-portlet m--bg-accent m-portlet--bordered-semi m-portlet--skin-dark item5" style="">
+                    <div class="m-portlet__head" style=" border-bottom: 2px solid #f5f5f5;">
+                        <div class="row">
+                            <div class="m-portlet__head-title col-md-9">
+                                <h3 class="m-portlet__head-text">
+                                    Bakiye
+                                </h3>
+                            </div>
+                            <div class="col-md-3" style="text-align:center;margin-top:28px;font-size:20px;color:white">
+                                <span id="itemspan2" style="font-size:24px;font-weight:700;margin-left:-30px">
+                                    @Html.DisplayFor(model => model.customer.Budget, new { @class = "item1-desc" })
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="m-portlet__body">
+
+                        <div class="bakiye_body">
+                            <a class="btn btn-primary bakiyebtn" data-toggle="modal" data-target="#m_modal_1">
+                                <span style="color:#00c5dc">
+                                    <i class="fa fa-plus"></i>
+                                    TAHSİLAT YAP
+                                </span>
+                            </a>
+                            <a class="btn btn-primary bakiyebtn" data-toggle="modal" data-target="#m_modal_2">
+                                <span style="color:#00c5dc">
+                                    <i class="fa fa-plus"></i>
+                                    ÖDEME YAP
+                                </span>
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="m-portlet m--bg-primary m-portlet--bordered-semi m-portlet--skin-dark item5">
+                    <div class="m-portlet__head" style=" border-bottom: 2px solid #f5f5f5;">
+                        <div class="row">
+                            <div class="m-portlet__head-title col-md-9">
+                                <h3 class="m-portlet__head-text">
+                                    AKTİF PROJELER
+                                </h3>
+                            </div>
+                            <div class="col-md-3" style="margin-top:25px">
+                                <a href="/Project/CPCreate/@Model.customer.Id" style="color:white;">
+                                    <span class="flaticon-plus" id="plus_span"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                        <ul>
+                            @foreach (var project in Model.projects)
+                            {
+                                <li class="" style="">
+                                    <div class="task-div" style="padding-bottom:15px">
+                                        <div class="task-date">@project.Start.ToString("dd-MM-yyyy") <span style="float:right"> @project.End.ToString("dd-MM-yyyy")</span></div>
+
+                                        <div class="task-title">
+                                            <a href="/Project/Detail/@project.Id" style="color:white">
+                                                @project.Title
+                                            </a>
+                                            <span style="float:right">@project.StateName</span>
+
+                                        </div>
+
+                                        <div class="task-state">
+                                            <button class="btn btn-sm btn-danger" style="color:white;padding:1px 30px;height:20px"> @project.TimeControl GÜN KALDI</button>
+                                            <a href="/Project/CDelete/@project.Id" class="btn btn-sm" id="project-detail-a">
+                                                <i class="fa fa-trash-o"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <div class="m-portlet m--bg-danger m-portlet--bordered-semi m-portlet--skin-dark item5" style="" id="">
+                    <div class="m-portlet__head" style=" border-bottom: 2px solid #f5f5f5;">
+                        <div class="row">
+                            <div class="m-portlet__head-title col-md-9">
+                                <h3 class="m-portlet__head-text">
+                                    SON SATIŞ FATURALARI
+                                </h3>
+
+                            </div>
+                            <div class="col-md-3" style="margin-top:25px">
+                                <a href="/Invoice/CICreate/@Model.customer.Id" style="color:white">
+                                    <span class="flaticon-plus" id="plus_span"></span>
+                                </a>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="m-portlet__body">
+                        <ul>
+                            @foreach (var invoice in Model.OutGoings)
+                            {
+                                <li class="">
+                                    <div class="invoice-div">
+                                        <span class="flaticon-list-2"></span>
+                                        <a href="/Invoice/CIDetail/@invoice.Id" class="invoice-a">
+                                            <span>@invoice.Title</span>
+                                        </a>
+                                        <div class="invoice-payment">
+                                            <span class="fa fa-try"></span>
+                                            <span>@invoice.GenelToplam</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+
+
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="m-portlet m--bg-danger m-portlet--bordered-semi m-portlet--skin-dark item5" style="">
+                    <div class="m-portlet__head" style=" border-bottom: 2px solid #f5f5f5;">
+                        <div class="row">
+                            <div class="m-portlet__head-title col-md-9">
+                                <h3 class="m-portlet__head-text">
+                                    SON ALIŞ FATURALARI
+                                </h3>
+
+                            </div>
+                            <div class="col-md-3" style="margin-top:25px">
+                                <a href="/Invoice/CBCreate/@Model.customer.Id" style="color:white;">
+                                    <span class="flaticon-plus" id="plus_span"></span>
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="m-portlet__body">
+                        <ul>
+                            @foreach (var invoice in Model.Incomings)
+                            {
+
+                                <li class="">
+                                    <div class="invoice-div">
+                                        <span class="flaticon-list-2"></span>
+                                        <a href="/Invoice/CBDetail/@invoice.Id" class="invoice-a">
+                                            <span>@invoice.Title</span>
+                                        </a>
+                                        <div class="invoice-payment">
+                                            <span class="fa fa-try"></span>
+                                            <span>@invoice.GenelToplam</span>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            }
+
+
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="m-portlet m--bg-warning m-portlet--bordered-semi m-portlet--skin-dark item5" style="">
+                    <div class="m-portlet__head" style=" border-bottom: 2px solid #f5f5f5;">
+                        <div class="row">
+                            <div class="m-portlet__head-title col-md-9">
+                                <h3 class="m-portlet__head-text">
+                                    AKTİF GÖREVLER
+                                </h3>
+
+                            </div>
+                            <div class="col-md-3" style="margin-top:25px">
+                                <span class="flaticon-plus" id="plus_span"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="m-portlet__body">
+
+                        <ul>
+                            <li class="">
+                                <div class="task-div" style="">
+                                    <div class="task-title">Görev Başlık</div>
+                                    <div class="task-state">Durum 4 gün kaldı</div>
+                                    <div class="task-date">başlama-bitiş tarihi</div>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="task-div" style="">
+                                    <div class="task-title">Görev Başlık</div>
+                                    <div class="task-state">Durum 4 gün kaldı</div>
+                                    <div class="task-date">başlama-bitiş tarihi</div>
+                                </div>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <div class="m-portlet  m-portlet--bordered-semi m-portlet--skin-dark item5" style="">
+                    <div class="m-portlet__head" style=" border-bottom: 2px solid #f5f5f5;">
+                        <div class="row">
+                            <div class="m-portlet__head-title col-md-9">
+                                <h3 class="m-portlet__head-text">
+                                    GÖRÜŞMELER
+                                </h3>
+
+                            </div>
+                            <div class="col-md-3" style="margin-top:25px">
+                                <a href="/InterViews/Create/@Model.customer.Id" style="color:white;">
+                                    <span class="flaticon-plus" id="plus_span"></span>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                        <ul>
+                            @foreach (var interview in Model.InterViews)
+                            {
+                                <li class="remind_li_right" style="margin: 20px 20px">
+                                    <div class="row remind_div">
+                                        <div class="col-md-11" style="margin:10px 10px; ">
+                                            <div>
+                                                <a href="/InterViews/Detail/@interview.Id" class="interview-a">
+                                                    <span style="">@interview.Title</span>
+                                                    <span style="float:right">@interview.CreateTime.Value.ToString("dd-MM-yyyy")</span>
+                                                </a>
+                                            </div>
+
+                                            <div>
+                                                <span>@interview.InterViewType  </span>
+                                                <span style="float:right">@interview.Result</span>
+                                            </div>
+                                            <div class="">
+                                                <span>@interview.WhoUser ile </span>
+
+                                                <span>@interview.WithWho  görüştü  </span>
+                                                <a href="/InterViews/CDelete/@interview.Id" class="btn btn-sm" style="float:right;color:black;background-color:white">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="m-portlet  m-portlet--bordered-semi m-portlet--border-bottom-metal item5" style="height:230px">
+                    <div class="m-portlet__head" style=" border-bottom: 2px solid #f5f5f5;">
+                        <div class="row">
+                            <div class="m-portlet__head-title col-md-9">
+                                <h3 class="m-portlet__head-text">
+                                    SON HAREKETLER
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                        <ul>
+                            <li class="">
+                                <div class="invoice-div">
+                                    <span class="flaticon-list-2"></span>
+                                    <a href="#" class="invoice-a">
+                                        <span style="color:black;">Son Satış Fatura1</span>
+                                    </a>
+
+                                </div>
+                            </li>
+
+
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!--begin: Modal -->
+                <div class="modal fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content" style="width:600px">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">
+                                    Yeni Tahsilat Ekle
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">
+                                        &times;
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <strong> Not : </strong>Yapacağınız işlemden sonra eğer Müşteri | Tedarikçi'ye ait Satış Faturası var ise otomatik kapatılacaktır.
+                            </div>
+                            <div class="modal-footer">
+                                @using (Html.BeginForm("DetailPaymentPost", "Customer", null, FormMethod.Post, new { @class = "m-form m-form--label-align-right" }))
+                                {
+                                    @Html.HiddenFor(model => model.customer.Id)
+
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-3 col-form-label">
+                                            Tarih :
+                                        </label>
+                                        <div class="col-lg-9">
+                                            @Html.TextBoxFor(model => model.PIncoming.CreateTime, "{0:dd-MMMM-yyyy}", new { @required = true , @class = "form-control m-input m-input--solid createtimepicker", @type = "text", @placeholder = "İşlem Tarihi", @id = "customerinput" })
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-3 col-form-label">
+                                            Hesap :
+                                        </label>
+                                        <div class="col-lg-9">
+                                            @Html.DropDownListFor(model => model.CashAccountId, new SelectList(Model.CashAccounts, "Id", "AccountName"), "Hesap Seçiniz", new { @required = true, @class = "form-control m-input m-input--solid", @id = "customerinput", @style = "margin-top:1px" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-3 col-form-label">
+                                            Tutar :
+                                        </label>
+                                        <div class="col-lg-9">
+                                            @Html.TextBoxFor(model => model.PIncoming.Total, new { @required = true, @class = "form-control m-input m-input--solid", @type = "number", @placeholder = "Tutar", @id = "customerinput" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-3 col-form-label">
+                                            Açıklama :
+                                        </label>
+                                        <div class="col-lg-9">
+                                            @Html.TextAreaFor(model => model.PIncoming.Description, new { @class = "form-control m-input m-input--solid", @type = "number", @rows = "4", @placeholder = "Açıklama", @id = "customerinput" })
+                                        </div>
+                                    </div>
+                                    <button type="reset" class="btn btn-secondary" data-dismiss="modal">
+                                        Vazgeç
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">
+                                        Onayla
+                                    </button>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end: Modal -->
+                <!--begin: Modal -->
+                <div class="modal fade" id="m_modal_2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content" style="width:600px">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">
+                                    Yeni Tahsilat Ekle
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">
+                                        &times;
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <strong> Not : </strong>Yapacağınız işlemden sonra eğer Müşteri | Tedarikçi'ye ait Alış Faturası var ise otomatik kapatılacaktır.
+                            </div>
+                            <div class="modal-footer">
+                                @using (Html.BeginForm("DetailPaymentPost", "Customer", null, FormMethod.Post, new { @class = "m-form m-form--label-align-right" }))
+                                {
+                                    @Html.HiddenFor(model => model.customer.Id)
+
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-3 col-form-label">
+                                            Tarih :
+                                        </label>
+                                        <div class="col-lg-9">
+                                            @Html.TextBoxFor(model => model.POutGoing.CreateTime, "{0:dd-MMMM-yyyy}", new { @required = true, @class = "form-control m-input m-input--solid createtimepicker", @type = "text", @placeholder = "İşlem Tarihi", @id = "customerinput" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-3 col-form-label">
+                                            Hesap :
+                                        </label>
+                                        <div class="col-lg-9">
+                                            @Html.DropDownListFor(model => model.CashAccountId, new SelectList(Model.CashAccounts, "Id", "AccountName"), "Hesap Seçiniz", new { @required = true, @class = "form-control m-input m-input--solid", @id = "customerinput", @style = "margin-top:1px" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-3 col-form-label">
+                                            Tutar :
+                                        </label>
+                                        <div class="col-lg-9">
+                                            @Html.TextBoxFor(model => model.POutGoing.Total, new { @required = true, @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "Tutar", @id = "customerinput" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-3 col-form-label">
+                                            Açıklama :
+                                        </label>
+                                        <div class="col-lg-9">
+                                            @Html.TextAreaFor(model => model.POutGoing.Description, new { @class = "form-control m-input m-input--solid", @type = "number", @rows = "4", @placeholder = "Açıklama", @id = "customerinput" })
+                                        </div>
+                                    </div>
+                                    <button type="reset" class="btn btn-secondary" data-dismiss="modal">
+                                        Vazgeç
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">
+                                        Onayla
+                                    </button>
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end: Modal -->
+            </div>
+        </div>
+
+    </div>
+</div>
+

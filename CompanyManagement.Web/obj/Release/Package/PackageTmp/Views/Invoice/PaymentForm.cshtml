@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "PaymentForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<aside class="col-sm-6" style="margin-top:10px;">
+    <article class="card" style="width:70%">
+        <div class="card-body p-5">
+            <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
+                        <i class="fa fa-credit-card"></i> Kartlı Ödeme
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
+                        <i class="fa fa-university"></i>  Bankaya Transfer
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="nav-tab-card">
+                    <p class="alert alert-success">İyzico ile Güvenli Ödeme</p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="username" placeholder="Kart Üzerindeki İsim" required="">
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="cardNumber" placeholder="Kart Numarası">
+                                <div class="input-group-append">
+                                    <span class="input-group-text text-muted" style="background-color:black;color:white">
+                                        <i class="la la-cc-visa"></i>   <i class="la la-cc-amex"></i>
+                                        <i class="la la-cc-mastercard"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label><span class="hidden-xs">Expiration</span> </label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" placeholder="MM" name="">
+                                        <input type="number" class="form-control" placeholder="YY" name="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
+                                    <input type="number" class="form-control" required="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="username" placeholder="3D Secure" required="">
+                    
+                        </div>
+                        <button class="subscribe btn btn-primary btn-block" type="button">Onayla</button>
+                    </form>
+                </div> 
+                <div class="tab-pane fade" id="nav-tab-bank">
+                    <p>Banka Hesap Bilgileri</p>
+                    <dl class="param">
+                        <dt>BANKA: </dt>
+                        <dd> Şalvar Bank</dd>
+                    </dl>
+                    <dl class="param">
+                        <dt>Hesap No: </dt>
+                        <dd> 12345678912345</dd>
+                    </dl>
+                    <dl class="param">
+                        <dt>IBAN: </dt>
+                        <dd> 123456789</dd>
+                    </dl>
+                    <p>
+                        <strong>Not:</strong> Bu bilgileri kullanarak yollayabilirsiniz
+                    </p>
+                </div> <!-- tab-pane.// -->
+            </div> <!-- tab-content .// -->
+        </div> <!-- card-body.// -->
+    </article> <!-- card.// -->
+
+</aside> 

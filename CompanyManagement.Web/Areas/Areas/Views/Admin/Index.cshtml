@@ -1,0 +1,49 @@
+﻿@model  IEnumerable<CompanyManagement.Data.Identity.CMUser>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Users
+    </div>
+    <table class="table table-striped">
+        <tr>
+            <th>Id</th>
+            <th>UserName</th>
+            <th>CompanyId</th>
+        </tr>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="3" class="text-center">Kullanıcı Yok</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.UserName</td>
+                    <td>@user.CompanyId</td>
+                </tr>
+            }
+
+        }
+    </table>
+</div>
+<div class="row">
+
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <a href="@Url.Action("CalısanEkle", "Admin", new { id = 3 })" class="btn btn-sm btn-primary">
+                  Calısan Ekle
+                </a>
+            </div>
+   
+        </div>
+        <div class="col-md-6"></div>
+   
+</div>

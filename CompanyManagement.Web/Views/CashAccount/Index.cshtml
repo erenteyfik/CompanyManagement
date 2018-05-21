@@ -1,0 +1,105 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<CompanyManagement.Data.Entities.CashAccount>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="m-grid__item m-grid__item--fluid m-wrapper"  style="margin-left:0px;margin-top:0px">
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="m-subheader__title m-subheader__title--separator">
+                    Hesaplar
+                </h3>
+            </div>
+        </div>
+    </div>
+    <!-- END: Subheader -->
+    <div class="m-content">
+
+        <div class="m-portlet m-portlet--mobile">
+            <div class="m-portlet__body">
+                <!--begin: Search Form -->
+                <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
+                    <div class="row align-items-center">
+                        <div class="col-xl-8 order-2 order-xl-1">
+                            <div class="form-group m-form__group row align-items-center">
+                                <div class="col-md-12">
+                                    <div class="m-input-icon m-input-icon--left">
+                                        <input type="text" class="form-control m-input" placeholder="Hatırlatmalarda veya Notlarda ara" id="MySearch">
+                                        <span class="m-input-icon__icon m-input-icon__icon--left">
+                                            <span>
+                                                <i class="la la-search"></i>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 order-1 order-xl-2 m--align-right">
+                            <a href="/CashAccount/Create" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                                <span>
+                                    <i class="la la-cart-plus"></i>
+                                    <span>
+                                        Yeni Hesap Ekle
+                                    </span>
+                                </span>
+                            </a>
+                            <div class="m-separator m-separator--dashed d-xl-none"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--end: Search Form -->
+                <!--begin: Datatable -->
+                <table class="mytable" id="mytablecustomer">
+                    <thead>
+                        <tr>
+                            <th>
+                                HESAP İSMİ
+                            </th>
+                            <th>
+                                HESAP TİPİ
+                            </th>
+                            <th>
+                                HESAP KURU
+                            </th>
+                            <th>
+                                BAKİYE
+                            </th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var cashAccount in Model)
+                        {
+                            <tr class="MySearch">
+                                <td>
+                                    <a href="/CashAccount/Detail/@cashAccount.Id">
+                                        @cashAccount.AccountName
+                                    </a>
+                                </td>
+                                <td>@(cashAccount.AccountType == CompanyManagement.Data.Entities.EnumAccountType.CashAccount ? "Kasa Hesabı" : "Banka Hesabı")</td>
+                                <td>hesap kuru</td>
+                                <td>@cashAccount.OpeningAmount</td>
+                                <td>
+                                    <a href="@Url.Action("Delete", "cashAccount", new { id = cashAccount.Id })" class="btn btn-sm btn-danger">
+                                        <span class="fa fa-trash-o" style=""></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @Html.PagedListPager(Model, _pageNo => Url.Action("Index", "CashAccount", new { pageNO = _pageNo }))
+                <!--end: Datatable -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.0.0.min.js"></script>
+<script src="~/Scripts/MyPageJavascript.js"></script>

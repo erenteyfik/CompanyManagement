@@ -1,0 +1,269 @@
+﻿@model CompanyManagement.Data.Entities.Customer
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .main-container {
+        width: 100%;
+        margin-top: 30px;
+        margin-left: 50px;
+        color: #565656;
+        font-weight: 700;
+    }
+
+    h2 {
+        font-weight: 600;
+        font-size: 24px;
+        margin-bottom: 20px
+    }
+
+
+    #headrow, #tablerow, #footerrow {
+        margin-top: 30px;
+        width: 90%;
+        border-radius: 0.25rem;
+        background-color: white;
+        margin-left: 0px;
+    }
+
+    #customerinput {
+        width: 80%;
+    }
+
+    h3 {
+        font-weight: 700;
+        font-size: 20px;
+        color: #565656;
+    }
+
+    .col-form-label {
+        font-weight: 700 !important;
+    }
+</style>
+<div class="main-container">
+
+    <h2>Müşteri | Tedarikçi Ekle </h2>
+    <div class="row" id="headrow">
+        <div class="m-portlet" style="width:100%">
+            <!--begin::Form-->
+            @using (Html.BeginForm("CreatePost", "Customer", null, FormMethod.Post, new { @class = "m-form m-form--label-align-right" }))
+            {
+
+                <div class="m-portlet__body">
+                    <div class="m-form__section m-form__section--first">
+                        <div class="m-form__heading">
+                            <h3>
+                                Müşteri Tedarikçi Bilgileri
+                            </h3>
+                            <div class="m-form__seperator m-form__seperator--dashed"></div>
+                        </div>
+
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-3 col-form-label">
+                                MÜŞTERİ | TEDARİKÇİ ADI :
+                            </label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.UserName, new { @class = "form-control m-input m-input--solid",@type="text", @placeholder = "MÜŞTERİ | TEDARİKÇİ ADI", @id = "customerinput", @required=true })
+                            </div>
+                        </div>
+
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-3 col-form-label">
+                                YETKİLİ KİŞİ :
+                            </label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.AuthorizedPerson, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "YETKİLİ KİŞİ", @id = "customerinput" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-3 col-form-label">
+                                E-POSTA :
+                            </label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control m-input m-input--solid", @type = "email", @placeholder = "E-POSTA", @id = "customerinput" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-3 col-form-label">
+                                TELEFON :
+                            </label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.Phone, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "İş Yeri Telefonu", @id = "customerinput" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-3 col-form-label">
+                                CEP TEL :
+                            </label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.MobilePhone, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "Cep Telefonu", @id = "customerinput" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-3 col-form-label">
+                                AÇILIŞ BAKİYESİ :
+                            </label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.Budget, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "AÇILIŞ BAKİYESİ", @id = "customerinput" })
+                            </div>
+                        </div>
+                    </div>
+
+                    @*<div class="m-form__section m-form__section--last">
+                        <div class="m-form__heading">
+                            <h3>
+                                Diğer Yetkili Bilgileri
+                            </h3>
+                            <div class="m-form__seperator m-form__seperator--dashed"></div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-3">
+                              
+                                <input type="text" class="form-control m-input m-input--solid" placeholder="Adı Soyadı" style=" margin-left:160px">
+                            </div>
+                            <div class="col-lg-3">
+                               
+                                <input type="text" class="form-control m-input m-input--solid" placeholder="Telefon" style="margin-left:145px">
+                            </div>
+                            <div class="col-lg-3">
+                              
+                                <input type="text" class="form-control m-input m-input--solid" placeholder="E-Posta" style="margin-left:125px">
+                            </div>
+                        </div>
+
+                    </div>*@
+
+                    <div class="m-form__section m-form__section--last">
+                        <div class="m-form__heading">
+                            <h3>
+                                Banka Bilgileri
+                            </h3>
+                            <div class="m-form__seperator m-form__seperator--dashed"></div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-3 col-form-label">
+                                BANKA İSMİ :
+                            </label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.BankName, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "Banka İsmi", @id = "customerinput" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-3 col-form-label">
+                                IBAN NO :
+                            </label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.IBANno, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "BANKA IBAN NO", @id = "customerinput" })
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="m-form__section m-form__section--last">
+                        <div class="m-form__heading">
+                            <h3>
+                                Firma Bilgileri
+                            </h3>
+                            <div class="m-form__seperator m-form__seperator--dashed"></div>
+                        </div>
+
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-3 col-form-label">
+                                FİRMA UNVANI :
+                            </label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.CompanyTitle, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "Firma Unvanı", @id = "customerinput" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-3 col-form-label">
+                                VERGİ DAİRESİ :
+                            </label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.TaxOffice, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "Vergi Dairesi", @id = "customerinput" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-3 col-form-label">
+                                VERGİ/TC NUMARASI :
+                            </label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.TaxorTCNo, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "Vergi/Tc Numarası", @id = "customerinput" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-3 col-form-label">
+                                Firma Telefon :
+                            </label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.CompanyPhone, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "Faks", @id = "customerinput" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-3 col-form-label">
+                                FAKS :
+                            </label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.FaxNo, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "Faks", @id = "customerinput" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-3 col-form-label">
+                                ADRES
+                            </label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.Address, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "Adres", @id = "customerinput" })
+                            </div>
+                        </div>
+
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-3 col-form-label">
+                                İL :
+                            </label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.Province, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "İl", @id = "customerinput" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-3 col-form-label">
+                                İLÇE :
+                            </label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.District, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "İlçe", @id = "customerinput" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-3 col-form-label">
+                                WEB SİTESİ :
+                            </label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.WebAddress, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "Web Sitesi", @id = "customerinput" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="m-portlet__foot m-portlet__foot--fit">
+                    <div class="m-form__actions m-form__actions">
+                        <div class="row">
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-6">
+                                <button type="submit" class="btn btn-primary">
+                                    MÜŞTERİYİ KAYDET
+                                </button>
+                                @Html.ActionLink("GERİ DÖN", "Index", null, new { @class = "btn btn-secondary", @type="reset" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+            <!--end::Form-->
+        </div>
+
+    </div>
+</div>
+

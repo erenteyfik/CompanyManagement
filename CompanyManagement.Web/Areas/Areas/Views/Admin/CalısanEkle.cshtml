@@ -1,0 +1,46 @@
+﻿@model CompanyManagement.Data.Model.EmployeeRegister
+@{
+    /**/
+
+    ViewBag.Title = "CalısanEkle";
+}
+
+<h2>CalısanEkle</h2>
+<hr />
+
+@Html.ValidationSummary()
+
+@using (Html.BeginForm("CalısanPost", "Admin", null, FormMethod.Post, new { @class = "", @id = "" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.Email)
+    @Html.HiddenFor(model => model.CompanyId)
+    @Html.HiddenFor(model => model.CompanyName)
+
+    <div class="form-group">
+        <label>Email</label>
+        @Html.DisplayFor(model => model.Email, new { @class = "form-control m-input" })
+    </div>
+    <div class="form-group">
+        <label>Company Id</label>
+        @Html.DisplayFor(model => model.CompanyId, new { @class = "form-control m-input" })
+    </div>
+    <div class="form-group">
+        <label>CompanyName</label>
+        @Html.DisplayFor(model => model.CompanyName, new { @class = "form-control m-input" })
+    </div>
+
+    <div class="form-group">
+        <label>UserName</label>
+        @Html.EditorFor(t => t.UserName, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Şifre</label>
+        @Html.PasswordFor(t => t.Password, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+}
+

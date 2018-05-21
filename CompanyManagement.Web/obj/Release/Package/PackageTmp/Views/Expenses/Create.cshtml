@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .main-container {
+        width: 100%;
+        margin-top: 30px;
+        margin-left: 50px;
+        color: #565656;
+        font-weight: 700;
+    }
+
+    h2 {
+        font-weight: 600;
+        font-size: 24px;
+        margin-bottom: 20px
+    }
+
+
+    #headrow, #tablerow, #footerrow {
+        margin-top: 30px;
+        width: 90%;
+        border-radius: 0.25rem;
+        background-color: white;
+        margin-left: 0px;
+    }
+
+    #customerinput {
+        width: 80%;
+    }
+
+    h3 {
+        font-weight: 700;
+        font-size: 20px;
+        color: #565656;
+    }
+
+    .col-form-label {
+        font-weight: 700 !important;
+    }
+</style>
+<div class="main-container">
+
+    <h2>Yeni Alış Faturası Ekle </h2>
+    <div class="row" id="headrow">
+        <div class="m-portlet" style="width:100%">
+            <!--begin::Form-->
+            <form class="m-form m-form--label-align-right">
+                <div class="m-portlet__body">
+                    <div class="m-form__section m-form__section--first">
+
+
+                        <div class="row" style="">
+                            <div class="col-md-6">
+                                <div class="form-group m-form__group row">
+                                    <label class="col-lg-3 col-form-label">
+                                        Harcama BAŞLIĞI :
+                                    </label>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control m-input m-input--solid" placeholder="MÜŞTERİ | TEDARİKÇİ ADI" id="customerinput">
+                                    </div>
+                                </div>
+                              
+                                <div class="form-group m-form__group row">
+                                    <label class="col-lg-3 col-form-label">
+                                        İŞLEM TARİHİ :
+                                    </label>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control m-input m-input--solid" id="m_datepicker_1" readonly="" placeholder="İşlem Tarihi Seç">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group m-form__group row">
+                                    <label class="col-lg-3 col-form-label">
+                                        TOPLAM TUTAR :
+                                    </label>
+                                    <div class="col-lg-9">
+                                        <input type="number" class="form-control m-input m-input--solid" placeholder="Full name" id="customerinput">
+                                    </div>
+                                </div>
+
+                                <div class="form-group m-form__group row">
+                                    <label class="col-lg-3 col-form-label">
+                                        ÖDEME TARİHİ :
+                                    </label>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control m-input m-input--solid" id="m_datepicker_1" readonly="" placeholder="Tahsilat Tarihi Seç">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top:30px">
+       
+            
+                           
+                            <div class="" style="margin-top:30px;border:none;margin-left:30px">
+                                <textarea rows="5" style="width:90%;background-color:#f4f5f8;border:none;" placeholder="Harcama Açıklaması"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div class="m-portlet__foot m-portlet__foot--fit">
+                    <div class="m-form__actions m-form__actions">
+                        <div class="row">
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-6">
+                                <button type="submit" class="btn btn-primary">
+                                    HARCAMAYI KAYDET
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!--end::Form-->
+        </div>
+
+    </div>
+</div>
+

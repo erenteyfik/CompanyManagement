@@ -1,0 +1,296 @@
+﻿
+
+
+.main-container {
+    width: 100%;
+    margin-top: 30px;
+    margin-left: 30px;
+    color: #565656;
+    font-weight: 700;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 20px
+}
+
+.search-control {
+    display: block;
+    width: 830px;
+    padding: 0.65rem 1rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    margin-left: -15px
+}
+
+
+
+#footerrow {
+    height: 50px;
+}
+
+#headrow, #tablerow, #footerrow {
+    margin-top: 30px;
+    width: 90%;
+    border-radius: 0.25rem;
+    background-color: white;
+    margin-left: 0px;
+}
+
+#headrow {
+    background-color: #f2f3f8 !important;
+}
+
+.tablecontainer {
+    padding: 30px 10px 10px 30px;
+}
+
+#Filtrelebtn {
+    margin-top: 10px;
+    height: 32px;
+    margin-bottom: 32px;
+    border-radius: 0.25rem;
+}
+
+#tablecustomer {
+    width: 1200px;
+}
+
+a, a:hover {
+    color: #565656;
+    text-decoration:none;
+}
+
+#customerinput, #m_datepicker_1, #m_datepicker_3 ,#datepicker{
+    width: 80%;
+}
+
+h3 {
+    font-weight: 700;
+    font-size: 20px;
+    color: #565656;
+}
+.col-form-label {
+    font-weight: 700 !important;
+}
+#nav-a:hover {
+    background-color: white;
+}
+#nav-b {
+    background-color: white;
+}
+    #nav-b:hover {
+        background-color: white;
+    }
+.item1_detail, #item1_title {
+    border-bottom: 2px solid #f5f5f5;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#item1 {
+    background-color: white;
+    margin-top: -10px
+}
+
+.item1-desc {
+    margin-left: 10px;
+}
+
+.item1_body {
+    color: #888888;
+    line-height: 24px;
+    font-size: 16px;
+}
+
+.bakiyebtn, .bakiyebtn:hover {
+    width: 300px;
+    color: #00c5dc;
+    background-color: white;
+    margin: 10px 10px;
+}
+
+.bakiye_body {
+    text-align: center;
+}
+
+.invoice-payment {
+    float: right;
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+}
+
+.invoice-a, .invoice-a:hover {
+    text-decoration: none;
+    outline: 0;
+    color: white;
+}
+
+.task-div, .invoice-div {
+    margin-left: -30px;
+    border-bottom: 2px solid #f5f5f5;
+    padding: 10px 10px;
+}
+#layout_span{
+    font-weight:600;
+    font-size:15px;
+}
+#plus_span {
+    font-weight: 700;
+    font-size: 25px;
+    margin-left: 45px   
+}
+.remind_li {
+    border-bottom: 2px solid #f5f5f5;
+    color: #888888;
+    font-size:16px;
+}
+.remind_li_right {
+    
+    color: white;
+    font-size: 14px;
+
+}
+.remind_div {
+    margin-left: -50px;
+    border-bottom: 2px solid #f5f5f5;
+}
+.remind_body {
+    margin-top: 70px;
+    border-top: 2px solid #f5f5f5;
+    border-bottom: 2px solid #f5f5f5;
+}
+#projectrow {
+    margin: 10px 10px;
+}
+#project-detail-a, #project-detail-a:hover {
+    float: right;
+    color: black;
+    background-color: white;
+
+}
+#invoice_h4 {
+    color: #0373c3;
+    font-size: 24px;
+}
+#spanaratoplam, #spankdv, #spantotal {
+    color: #565656;
+    font-size:24px;
+}
+
+.newProduct {
+    position: absolute;
+    display: none;
+    top: 16px;
+    right: 16px;
+    color: white;
+    background-color: #36a3f7;
+    border-color: #36a3f7;
+    text-align: center;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    padding: 0.1rem;
+    border-radius: 0.25rem;
+    font-size: 14px
+}
+#mytablecustomer {
+    width: 100%;
+    padding: 100px 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    table-layout: fixed;
+    /*font-family: 'Rock Salt', cursive;*/
+    caption-side: bottom;
+    text-align: left;
+    letter-spacing: 1px;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr {
+    /*background-image: url(noise.png);*/
+}
+
+table thead tr {
+    background-color: #f9f9f9;
+}
+
+    table thead tr th {
+        padding: 13px 5px
+    }
+
+tbody tr > td a {
+}
+#mytablecustomer thead tr > th, #mytablecustomer tbody tr > td {
+    padding-left: 35px;   
+}
+#mytablecustomer thead tr th{
+    font-size:15px
+}
+#mytablecustomer tbody tr td {
+    font-size: 12px
+}
+#cpspan {
+    font-size: 12px;
+    float: right;
+}
+
+th {
+    color: #0373c3;
+    font-weight: 700;
+    font-size: 20px;
+}
+td {
+    padding: 8px;
+    line-height: 1.42857143;
+    border-top: 1px solid #ddd;
+    vertical-align: middle !important;
+    font-size: 15px;
+    font-weight: 600;
+}
+#thmusteri {
+    width: 120px;
+}
+#theposta, #thtelefon, #thbakiye {
+    width: 90px;
+}
+#thed {
+    width: 50px;
+}
+.createbtn {
+    padding: 3px 35px
+}
+#item1, #item2, #item3 {
+    width: 800px;
+}
+
+
+.item1-head {
+    font-weight: 700;
+    color: black;
+    font-size: 17px;
+    width: 150px;
+}
+#itemspan {
+    margin-left: -20px;
+    color: black;
+}
+
+#itemspan2 {
+    margin-left: 20px;
+    color: #0373c3;
+}
+

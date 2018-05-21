@@ -1,0 +1,176 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model CompanyManagement.Web.Models.CollectingIndexModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="m-subheader__title m-subheader__title--separator">
+                    Tahsilatlar
+                </h3>
+                <span>Tahsilatlar Bakiye Toplamı :  <strong style="font-size:25px;color:darkblue;font-weight:700">111,99</strong></span>
+            </div>
+        </div>
+    </div>
+    <!-- END: Subheader -->
+    <div class="m-content">
+
+        <div class="m-portlet m-portlet--mobile">
+            <div class="m-portlet__body">
+
+                <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
+                    <div class="row align-items-center">
+                        <div class="col-xl-8 order-2 order-xl-1">
+                            <div class="form-group m-form__group row align-items-center">
+                                <div class="col-md-12">
+                                    <div class="m-input-icon m-input-icon--left">
+                                        <input type="text" class="form-control m-input" placeholder="Tahsilat Hareketlerinde ara" id="MySearch">
+                                        <span class="m-input-icon__icon m-input-icon__icon--left">
+                                            <span>
+                                                <i class="la la-search"></i>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 order-1 order-xl-2 m--align-right">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#m_modal_1">
+                                <span>
+                                    <i class="la la-cart-plus"></i>
+                                    <span>
+                                        Yeni Tahsilat Ekle
+                                    </span>
+                                </span>
+                            </button>
+                            <div class="m-separator m-separator--dashed d-xl-none"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <table class="mytable" id="mytablecustomer">
+                    <thead>
+                        <tr>
+                            <th>İşlem Tarihi</th>
+                            <th>MÜŞTERİ/TEDARİKÇİ</th>
+                            <th>İŞLENDİĞİ HESAP</th>
+                            <th>TOPLAM TUTAR</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var incoming in Model.PIncomings)
+                        {
+                            <tr class="MySearch">
+                                <td>
+                                    <a href="/Collecting/Detail/@incoming.Id">
+                                        @incoming.CreateTime.ToString("dd-MM-yyyy")
+                                    </a>
+                                </td>
+                                <td>@incoming.CustomerUserName</td>
+                                <td>@incoming.WhichSafe</td>
+                                <td>@incoming.Total</td>
+                                <td>
+                                    <a href="/Collecting/Delete/@incoming.Id" class="btn btn-sm btn-danger">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @Html.PagedListPager(Model.PIncomings, _pageNo => Url.Action("Index", "Collecting", new { pageNO = _pageNo }))
+
+                <!--begin: Modal -->
+                <div class="modal fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content" style="width:600px">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">
+                                    Yeni Tahsilat Ekle
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">
+                                        &times;
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <strong> Not : </strong>Yapacağınız işlemden sonra eğer Müşteri | Tedarikçi'ye ait Satış Faturası var ise otomatik kapatılacaktır.
+                            </div>
+                            <div class="modal-footer">
+                                @using (Html.BeginForm("Create", "Collecting", null, FormMethod.Post, new { @class = "m-form m-form--label-align-right" }))
+                                {
+
+
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-3 col-form-label">
+                                            Tarih :
+                                        </label>
+                                        <div class="col-lg-9">
+                                            @Html.TextBoxFor(model => model.PIncoming.CreateTime, "{0:dd-MMMM-yyyy}", new { @required = true, @class = "form-control m-input m-input--solid createtimepicker", @type = "text", @placeholder = "İşlem Tarihi", @id = "customerinput" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-3 col-form-label">
+                                            Müşteri :
+                                        </label>
+                                        <div class="col-lg-9">
+                                            @Html.DropDownListFor(model => model.PIncoming.CustomerId, new SelectList(Model.customers, "Id", "UserName"), "Müşteri Seçiniz.", new { @required = true, @class = "form-control m-input m-input--solid", @id = "customerinput", @style = "" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-3 col-form-label">
+                                            Hesap :
+                                        </label>
+                                        <div class="col-lg-9">
+                                            @Html.DropDownListFor(model => model.CashAccountId, new SelectList(Model.CashAccounts, "Id", "AccountName"), "Hesap Seçiniz", new { @required = true, @class = "form-control m-input m-input--solid", @id = "customerinput", @style = "margin-top:1px" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-3 col-form-label">
+                                            Tutar :
+                                        </label>
+                                        <div class="col-lg-9">
+                                            @Html.TextBoxFor(model => model.PIncoming.Total, new { @required = true, @class = "form-control m-input m-input--solid", @type = "number", @placeholder = "Tutar", @id = "customerinput" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-3 col-form-label">
+                                            Açıklama :
+                                        </label>
+                                        <div class="col-lg-9">
+                                            @Html.TextAreaFor(model => model.PIncoming.Description, new { @class = "form-control m-input m-input--solid", @type = "number", @rows = "4", @placeholder = "Açıklama", @id = "customerinput" })
+                                        </div>
+                                    </div>
+                                    <button type="reset" class="btn btn-secondary" data-dismiss="modal">
+                                        Vazgeç
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">
+                                        Onayla
+                                    </button>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end: Modal -->
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.0.0.min.js"></script>
+<script src="~/Scripts/MyPageJavascript.js"></script>

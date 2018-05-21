@@ -1,0 +1,295 @@
+﻿@model CompanyManagement.Web.Models.InvoiceDetailModel
+@{
+    ViewBag.Title = "Send";
+    Layout = "~/Views/Shared/_PaymentLayout.cshtml";
+}
+
+<style>
+    #invoice-head-image {
+        background-image: url('../../default/assets/app/media/img/bg/bg-6.jpg');
+    }
+
+    #invoicedetail {
+    }
+</style>
+<div class="m-grid__item m-grid__item--fluid m-wrapper" style="width:1000px;margin:0px 250px">
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            @*<div class="mr-auto">
+                <h3 class="m-subheader__title m-subheader__title--separator">
+                    @Html.DisplayFor(model => model.Title, new { @class = "", @id = "", @type = "text" })
+                </h3>
+            </div>*@
+            <div>
+                <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
+                    <a href="#" style="margin-left:925px;margin-bottom:10px" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
+                        <i class="la la-plus m--hide"></i>
+                        <i class="la la-ellipsis-h"></i>
+                    </a>
+                    <div class="m-dropdown__wrapper">
+                        <div class="m-dropdown__inner">
+                            <div class="m-dropdown__body">
+                                <div class="m-dropdown__content">
+                                    <ul class="m-nav">
+                                        <li class="m-nav__section m-nav__section--first m--hide">
+                                            <span class="m-nav__section-text">
+                                                Ödeme Yap
+                                            </span>
+                                        </li>
+                                        <li class="m-nav__item">
+                                            <a href="" class="m-nav__link" data-toggle="modal" data-target="#m_modal_1">
+                                                <i class="m-nav__link-icon flaticon-share"></i>
+                                                <span class="m-nav__link-text" id="tahsilet">
+                                                    Ödeme Yap
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Subheader -->
+    <div class="m-content">
+        <div class="m-portlet">
+            <div class="m-portlet__body m-portlet__body--no-padding">
+                <div class="m-invoice-1">
+                    <div class="m-invoice__wrapper">
+                        <div class="m-invoice__head" id="invoice-head-image">
+                            <div class="m-invoice__container m-invoice__container--centered">
+                                <div class="m-invoice__logo">
+                                    <a href="#">
+                                        <h1>
+                                            FATURA
+                                        </h1>
+                                    </a>
+                                    <a href="#">
+                                        <img src="~/default/assets/app/media/img/logos/logo_client_white.png" />
+                                    </a>
+                                </div>
+                                <span class="m-invoice__desc">
+                                    <span>
+                                        Cecilia Chapman, 711-2880 Nulla St, Mankato
+                                    </span>
+                                    <span>
+                                        Mississippi 96522
+                                    </span>
+                                </span>
+                                <div class="m-invoice__items">
+                                    <div class="m-invoice__item">
+                                        <span class="m-invoice__subtitle">
+                                            FATURA BAŞLIĞI
+                                        </span>
+                                        <span class="m-invoice__text">
+                                            @Html.DisplayFor(model => model.Title, new { @class = "", @id = "", @type = "text" })
+                                        </span>
+                                    </div>
+                                    <div class="m-invoice__item">
+                                        <span class="m-invoice__subtitle">
+                                            Müşteri
+                                        </span>
+                                        <span class="m-invoice__text">
+                                            @Html.DisplayFor(model => model.CustomerUserName, new { @class = "", @id = "", @type = "text" })
+                                        </span>
+                                    </div>
+                                    <div class="m-invoice__item">
+                                        <span class="m-invoice__subtitle">
+                                            İŞLEM TARİHİ
+                                        </span>
+                                        <span class="m-invoice__text">
+                                            @Convert.ToDateTime(Model.CreateTime).ToString("dd  MMMM yyyy")
+                                        </span>
+                                    </div>
+                                    <div class="m-invoice__item">
+                                        <span class="m-invoice__subtitle">
+                                            TAHSİLAT TARİHİ
+                                        </span>
+                                        <span class="m-invoice__text">
+                                            @Convert.ToDateTime(Model.ProcessTime).ToString("dd  MMMM yyyy")
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-invoice__body m-invoice__body--centered">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                HİZMET / ÜRÜN
+                                            </th>
+                                            <th>
+                                                AÇIKLAMA
+                                            </th>
+                                            <th>
+                                                MİKTAR
+                                            </th>
+                                            <th>
+                                                BİRİM FİYAT
+                                            </th>
+                                            <th>
+                                                VERGİ
+                                            </th>
+                                            <th>
+                                                TOPLAM
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var product in Model.ServiceProducts)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @product.Name
+                                                </td>
+                                                <td>
+                                                    @product.Description
+                                                </td>
+                                                <td>
+                                                    @product.Quantity
+                                                </td>
+                                                <td>
+                                                    @product.UnitPrice
+                                                </td>
+                                                <td>
+                                                    %@(CompanyManagement.Web.Helper.InvoiceTaxValueHelper.GetTaxValue(product.Tax))
+                                                </td>
+                                                <td>
+                                                    @product.Total
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="m-invoice__footer">
+                            <div class="m-invoice__container m-invoice__container--centered">
+                                <div class="m-invoice__content">
+                                    <span>
+                                        TOPLAM TUTAR
+                                    </span>
+                                    <span class="m-invoice__price">
+                                        @Model.GenelToplam
+                                    </span>
+                                    <span>
+                                        Vergiler Dahil
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--begin: Modal -->
+<div class="modal fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width:600px">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                     İyzico Ödeme Seçeneği ile Öde
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            @*<div class="modal-body">
+                    <strong> Not : </strong>Yapacağınız işlemden sonra eğer Müşteri | Tedarikçi'ye ait Satış Faturası var ise otomatik kapatılacaktır.
+                </div>*@
+            <div class="modal-footer">
+                <aside class="col-sm-12" style="margin-top:10px;">
+                    <article class="card" style="width:100%">
+                        <div class="card-body p-5">
+                            <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
+                                        <i class="fa fa-credit-card"></i> Kartlı Ödeme
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
+                                        <i class="fa fa-university"></i>  Bankaya Transfer
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="nav-tab-card">
+                                    <p class="alert alert-success">İyzico ile Güvenli Ödeme</p>
+                                    <form role="form">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="username" placeholder="Kart Üzerindeki İsim" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="cardNumber" placeholder="Kart Numarası">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text text-muted" style="background-color:black;color:white">
+                                                        <i class="la la-cc-visa"></i>   <i class="la la-cc-amex"></i>
+                                                        <i class="la la-cc-mastercard"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <div class="form-group">
+                                                    <label><span class="hidden-xs">tarih</span></label>
+                                                    <div class="input-group">
+                                                        <input type="number" class="form-control" placeholder="MM" name="">
+                                                        <input type="number" class="form-control" placeholder="YY" name="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
+                                                    <input type="number" class="form-control" required="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="username" placeholder="3D Secure" required="">
+                                        </div>
+                                        <button class="subscribe btn btn-primary btn-block" type="button">Onayla</button>
+                                    </form>
+                                </div>
+                                <div class="tab-pane fade" id="nav-tab-bank">
+                                    <p>Banka Hesap Bilgileri</p>
+                                    <dl class="param">
+                                        <dt>BANKA: </dt>
+                                        <dd> Şalvar Bank</dd>
+                                    </dl>
+                                    <dl class="param">
+                                        <dt>Hesap No: </dt>
+                                        <dd> 12345678912345</dd>
+                                    </dl>
+                                    <dl class="param">
+                                        <dt>IBAN: </dt>
+                                        <dd> 123456789</dd>
+                                    </dl>
+                                    <p>
+                                        <strong>Not:</strong> Bu bilgileri kullanarak yollayabilirsiniz
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </aside>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end: Modal -->

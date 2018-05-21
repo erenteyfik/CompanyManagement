@@ -1,0 +1,71 @@
+﻿@model CompanyManagement.Data.Entities.Remind
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #cpspan {
+        font-size: 12px;
+        float: right;
+    }
+</style>
+<div class="main-container">
+
+    <h2>Hatırlatma & Not Ekle</h2>
+    <div class="row" id="headrow">
+        <div class="m-portlet" style="width:100%">
+            <!--begin::Form-->
+            @using (Html.BeginForm("Create", "Remind", null, FormMethod.Post, new { @class = "m-form m-form--label-align-right" }))
+            {
+
+                <div class="m-portlet__body">
+                    <div class="m-form__section m-form__section--first">
+
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-2 col-form-label"  id="cpspan">
+                                BAŞLIK :
+                            </label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.Title, new { @required = true, @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "", @id = "customerinput" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-2 col-form-label"  id="cpspan">
+                                HATIRLATMA TARİHİ :
+                            </label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.UploadTime, "{0:dd-MMMM-yyyy}", new { @required = true, @class = "form-control m-input m-input--solid createtimepicker", @type = "text", @placeholder = "Hatırlatma Tarihi Seç", @id = "customerinput" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-2 col-form-label"  id="cpspan">
+                                NOT :
+                            </label>
+                            <div class="col-lg-9">
+                                @Html.TextAreaFor(model => model.Description, new { @class = "summernote", @type = "text", @placeholder = "Not Ekleyebilirsiniz", @id = "m_summernote_1", @style = "margin-left:200px" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="m-portlet__foot m-portlet__foot--fit">
+                    <div class="m-form__actions m-form__actions">
+                        <div class="row">
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-6">
+                                <button type="submit" class="btn btn-primary">
+                                    EKLE
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <!--end::Form-->
+        </div>
+
+    </div>
+
+</div>
+

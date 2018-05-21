@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="CMConnectionString-Web.config Connection String" description="CMConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=213.238.169.35;Initial Catalog=CMDatabase;Integrated Security=false; user id=sa; password=URU1925**;MultipleActiveResultSets=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\code35\\Documents\\Visual\ Studio\ 2017\\Projects\\CompanyManagement\.Web\\CompanyManagement\.Web\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CMConnectionString']/@connectionString" />
+  </parameter>
+</parameters>

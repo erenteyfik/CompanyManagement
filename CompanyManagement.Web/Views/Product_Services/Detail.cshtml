@@ -1,0 +1,333 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #headrow, #tablerow, #footerrow {
+        margin-top: 10px;
+        width: 100%;
+        border-radius: 0.25rem;
+        margin-left: -15px;
+    }
+
+    .main-container {
+        width: 100%;
+        margin-top: 30px;
+        margin-left: 15px;
+        color: #565656;
+        font-weight: 700;
+    }
+
+    h2 {
+        font-weight: 600;
+        font-size: 24px;
+        margin-bottom: 20px
+    }
+
+    h3 {
+        float: left;
+        width: 100%;
+        font-size: 16px;
+        color: #0373c3;
+        font-weight: 700;
+        margin-top: 35px;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+    }
+
+    .item1_detail, #item1_title {
+        border-bottom: 2px solid #f5f5f5;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    #item1 {
+        background-color: white;
+        margin-top: -10px
+    }
+
+    .item1-desc {
+        margin-left: 10px;
+    }
+
+    .item1_body {
+        color: #888888;
+        line-height: 24px;
+        font-size: 16px;
+    }
+
+    #item1_hr {
+    }
+
+    .bakiyebtn, .bakiyebtn:hover {
+        width: 300px;
+        color: #00c5dc;
+        background-color: white;
+        margin: 10px 10px;
+    }
+
+    .bakiye_body {
+        text-align: center;
+    }
+
+    .invoice-payment {
+        float: right;
+        font-size: 15px;
+        font-weight: 700;
+        color: white;
+    }
+
+    .invoice-a, .invoice-a:hover {
+        text-decoration: none;
+        outline: 0;
+        color: white;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    .task-div {
+        margin-left: -30px;
+        border-bottom: 2px solid #f5f5f5;
+        padding: 10px 10px;
+    }
+
+    td {
+        color: #888888;
+        line-height: 24px;
+        font-size: 14px;
+    }
+
+    th {
+        font-size: 16px;
+        color: #0373c3;
+        font-weight: 700;
+    }
+</style>
+
+<div class="main-container">
+    <div class="row" style="margin-left: 30px;">
+        <div class="col-md-3">
+            <h2>dsadsa</h2>
+        </div>
+
+
+    </div>
+
+    <div class="main-search">
+        <div class="row" id="headrow">
+            <div class="col-xl-12">
+                <div class="m-portlet " id="item1" style="margin-left: 30px;">
+                    <div class="row" style="text-align:center" id="item1_title">
+                        <div class="col-md-6">
+                            <div class="">
+                                <h3 class="" style="margin-left:-220px">
+                                    Ürün & Hizmet Bilgileri
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div style="margin-left:500px;margin-top:30px">
+                                <span class="flaticon-edit" data-dropdown-toggle="hover" aria-expanded="true"></span> 
+                                <span class="fa fa-trash-o" data-dropdown-toggle="hover" aria-expanded="true"></span>
+                            </div>
+               
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                        <div class="m-widget16">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="item1_body">
+                                        <div class="item1_detail">
+                                            <span class="item1-head">
+                                                Kodu :
+                                            </span>
+                                            <span class="item1-desc">
+                                                -
+                                            </span>
+                                        </div>
+                                        <div class="item1_detail">
+                                            <span class="item1-head">
+                                                Stok Miktarı :
+                                            </span>
+                                            <span class="item1-desc">
+                                                30
+                                            </span>
+                                        </div>
+                                        <div class="item1_detail">
+                                            <span class="item1-head">
+                                                Stok Takibi :
+                                            </span>
+                                            <span class="item1-desc">
+                                                Yapılıyor
+                                            </span>
+                                        </div>
+                                        <div class="item1_detail">
+                                            <span class="item1-head">
+                                                Uyarı :
+                                            </span>
+                                            <span class="item1-desc">
+                                                Yapılmıyor
+                                            </span>
+                                        </div>
+                                        <div class="item1_detail">
+                                            <span class="item1-head">
+                                                Alış Fiyatı :
+                                            </span>
+                                            <span class="item1-desc">
+                                                1,00
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="item1_body">
+                                        <div class="item1_detail">
+                                            <span class="item1-head">
+                                                Kayıt Tarihi :
+                                            </span>
+                                            <span class="item1-desc">
+                                                12 Nisan 2018
+                                            </span>
+                                        </div>
+                                        <div class="item1_detail">
+                                            <span class="item1-head">
+                                                Birimi :
+                                            </span>
+                                            <span class="item1-desc">
+                                                -
+                                            </span>
+                                        </div>
+                                        <div class="item1_detail">
+                                            <span class="item1-head">
+                                                Vergi :
+                                            </span>
+                                            <span class="item1-desc">
+                                                %18,00
+                                            </span>
+                                        </div>
+                                        <div class="item1_detail">
+                                            <span class="item1-head">
+                                                Kritik Uyarı Miktarı :
+                                            </span>
+                                            <span class="item1-desc">
+                                                5,00
+                                            </span>
+                                        </div>
+                                        <div class="item1_detail">
+                                            <span class="item1-head">
+                                                Satış Fiyatı :
+                                            </span>
+                                            <span class="item1-desc">
+                                                -
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-content" style="width:1420px">
+
+                    <div class="m-portlet m-portlet--mobile">
+                        <div class="m-portlet__body">
+                            <!--begin: Search Form -->
+                            <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
+                                <div class="row align-items-center">
+                                    <div class="col-xl-8 order-2 order-xl-1">
+                                        <div class="form-group m-form__group row align-items-center">
+                                            <div class="col-md-4">
+                                                <div class="m-input-icon m-input-icon--left">
+                                                    <input type="text" class="form-control m-input" placeholder="dsada Faturalarında ara" id="generalSearch">
+                                                    <span class="m-input-icon__icon m-input-icon__icon--left">
+                                                        <span>
+                                                            <i class="la la-search"></i>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!--end: Search Form -->
+                            <!--begin: Datatable -->
+                            <table class="m-datatable" id="html_table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            TÜR
+                                        </th>
+                                        <th>
+                                            FATURA AÇIKLAMASI
+                                        </th>
+                                        <th>
+                                            İŞLEM TARİHİ
+                                        </th>
+                                        <th>
+                                            ÖDEME TARİHİ
+                                        </th>
+                                        <th>
+                                            TUTAR
+                                        </th>
+                                        <th>
+                                            KALAN TUTAR
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            AF
+                                        </td>
+                                        <td>
+                                            dsadsa <br />
+                                            Tedarikçi : dsads
+                                        </td>
+                                        <td>12 Nisan 2018</td>
+                                        <td>18 Nisan 2018</td>
+                                        <td>2999,99</td>
+                                        <td>299,99</td>
+                                        <td><i class="flaticon-edit"></i> <i class="fa fa-trash-o"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            AF
+                                        </td>
+                                        <td>
+                                            dsadsa <br />
+                                            Tedarikçi : dsads
+                                        </td>
+                                        <td>12 Nisan 2018</td>
+                                        <td>18 Nisan 2018</td>
+                                        <td>2999,99</td>
+                                        <td>299,99</td>
+                                        <td><i class="flaticon-edit"></i> <i class="fa fa-trash-o"></i></td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                            <!--end: Datatable -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+</div>
+

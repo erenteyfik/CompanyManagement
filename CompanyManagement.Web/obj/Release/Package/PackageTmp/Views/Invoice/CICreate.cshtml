@@ -1,0 +1,341 @@
+﻿@model CompanyManagement.Web.Models.OutgoingViewModel
+@{
+    ViewBag.Title = "CICreate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    CompanyManagement.Web.Models.OutgoingViewModel outgoing = TempData["Outgoing"] as CompanyManagement.Web.Models.OutgoingViewModel;
+}
+<style>
+    .main-container {
+        width: 100%;
+        margin-top: 30px;
+        margin-left: 50px;
+        color: #565656;
+        font-weight: 700;
+    }
+
+    h2 {
+        font-weight: 600;
+        font-size: 24px;
+        margin-bottom: 20px
+    }
+
+
+    #headrow, #tablerow, #footerrow {
+        margin-top: 30px;
+        width: 90%;
+        border-radius: 0.25rem;
+        background-color: white;
+        margin-left: 0px;
+    }
+
+    #customerinput {
+        width: 80%;
+    }
+
+    h3 {
+        font-weight: 700;
+        font-size: 20px;
+        color: #565656;
+    }
+
+    .col-form-label {
+        font-weight: 700 !important;
+    }
+    #cpspan {
+        font-size: 12px;
+        float: right;
+    }
+</style>
+
+<div class="main-container" id="outgoing-div">
+
+    <h2>Yeni Satış Faturası Ekle </h2>
+    <div class="row" id="headrow">
+        <div class="m-portlet" style="width:100%">
+            <!--begin::Form-->
+            @using (Html.BeginForm("CIAdd", "Invoice", null, FormMethod.Post, new { @class = "m-form m-form--label-align-right" }))
+            {
+                <div class="m-portlet__body">
+                    <div class="m-form__section m-form__section--first">
+                        <div class="row" style="">
+                            <div class="col-md-6">
+                                <div class="form-group m-form__group row">
+                                    <label class="col-lg-3 col-form-label" id="cpspan">
+                                        FATURA BAŞLIĞI :
+                                    </label>
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(model => model.Title, new { @required = true, @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "Lütfen Başlık Giriniz.", @id = "customerinput" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group m-form__group row">
+                                    <label class="col-lg-3 col-form-label"  id="cpspan">
+                                        İŞLEM TARİHİ :
+                                    </label>
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(model => model.CreateTime, "{0:dd-MMMM-yyyy}", new { @required = true, @class = "form-control m-input m-input--solid createtimepicker", @type = "text", @placeholder = "Başlangıç Tarihi Seç", @id = "customerinput" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group m-form__group row">
+                                    <label class="col-lg-3 col-form-label"  id="cpspan">
+                                        MÜŞTERİ  :
+                                    </label>
+                                    <div class="col-lg-9">
+                                        @Html.DisplayFor(model => outgoing.CustomerUserName, new { @class = "form-control m-input m-input--solid", @id = "customerinput", @placeholder = "MÜŞTERİ | TEDARİKÇİ ADI", @type = "text" })
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <label class="col-lg-3 col-form-label"  id="cpspan">
+                                        TAHSİLAT TARİHİ:
+                                    </label>
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(model => model.ProcessTime, "{0:dd-MMMM-yyyy}", new { @required = true, @class = "form-control m-input m-input--solid createtimepicker", @type = "text", @placeholder = "Tahsilat Tarihi Seç", @id = "customerinput" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top:30px">
+                            <table class="table table-striped" id="">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            HİZMET / ÜRÜN
+                                        </th>
+                                        <th>
+                                            AÇIKLAMA
+                                        </th>
+                                        <th>
+                                            MİKTAR
+                                        </th>
+                                        <th>
+                                            BİRİM FİYAT
+                                        </th>
+                                        <th>
+                                            VERGİ
+                                        </th>
+                                        <th>
+                                            TOPLAM
+                                        </th>
+                                        <th>SİL</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (outgoing.ServiceProducts != null && outgoing.ServiceProducts.Count > 0)
+                                    {
+                                        foreach (var serviceproduct in outgoing.ServiceProducts)
+                                        {
+                                            <tr style="border-bottom:1px solid #565656;">
+                                                <td>
+                                                    @serviceproduct.Name
+                                                </td>
+                                                <td>
+                                                    @serviceproduct.Description
+                                                </td>
+                                                <td>
+                                                    @serviceproduct.Quantity
+                                                </td>
+                                                <td>
+                                                    @serviceproduct.UnitPrice
+                                                </td>
+                                                <td>
+                                                    @(CompanyManagement.Web.Helper.InvoiceTaxValueHelper.GetTaxValue(serviceproduct.Tax))
+                                                </td>
+                                                <td>
+                                                    @serviceproduct.Total
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-danger" href="@Url.Action("CIDelete","Invoice",new { serviceproduct.UniqueId })" data-form-method="post">
+                                                        X
+                                                    </a>
+
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                    <tr style="border-bottom:1px solid #565656;">
+                                        <td style="display:inline-block;position:relative">
+                                            @Html.TextBoxFor(model => model.ServiceProduct.Name, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "Hizmet/Ürün", @style = "background-color:white", @id = "productsearch" })
+                                            <span class="newProduct">
+                                                yeni
+                                            </span>
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(model => model.ServiceProduct.Description, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "Açıklama", @style = "background-color:white", })
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(model => model.ServiceProduct.Quantity, new { @class = "form-control m-input m-input--solid selectchangetotal", @type = "number", @placeholder = "1", @style = "background-color:white", @id = "selectquantity" })
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(model => model.ServiceProduct.UnitPrice, new { @class = "form-control m-input m-input--solid selectchangetotal", @type = "number", @placeholder = "Birim Fiyat", @style = "background-color:white", @id = "selectunitprice" })
+                                        </td>
+                                        <td>
+                                            @Html.EnumDropDownListFor(model => model.ServiceProduct.Tax, new { @class = "form-control m-input m-input--solid selectchangetotal", @style = "background-color:white;border:none;width:100px;margin-top:3px", @id = "selecttax" })
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(model => model.ServiceProduct.Total, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "Toplam", @style = "background-color:white", @id = "selecttotal", })
+                                        </td>
+                                        <td>
+                                            <span id="product_reduce" class="btn btn-sm btn-danger">X</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                            <div class="" style="float:right;margin-top:30px;">
+                                <button type="submit" class="btn btn-primary">
+                                    Hizmeti/Ürünü Faturaya Ekle
+                                </button>
+
+                            </div>
+
+                            @if (outgoing.Ayar == 0 || outgoing.Ayar == null)
+                            {
+                                <div class="" style="margin-left:700px;margin-top:110px;">
+                                    <div style="border-bottom: 1px solid #ddd;">
+                                        <h4 id="invoice_h4">
+                                            ARA TOPLAM :
+
+                                            <span id="spanaratoplam"></span>
+                                        </h4>
+                                    </div>
+                                    <div style="border-bottom: 1px solid #ddd;">
+                                        <h4 id="invoice_h4">
+                                            TOPLAM KDV : <span id="spankdv"></span>
+                                        </h4>
+                                    </div>
+                                    <div style="border-bottom: 1px solid #ddd;">
+                                        <h4 id="invoice_h4">
+                                            GENEL TOPLAM :
+                                            <span id="spantotal"></span>
+                                        </h4>
+                                    </div>
+                                </div>
+                            }
+                            @if (outgoing.Ayar == 1)
+                            {
+                                <div class="" style="margin-left:700px;margin-top:110px;">
+                                    <div style="border-bottom: 1px solid #ddd;">
+                                        <h4 id="invoice_h4">
+                                            ARA TOPLAM :
+                                            <span id="">@outgoing.AraToplam</span>
+                                        </h4>
+                                    </div>
+                                    <div style="border-bottom: 1px solid #ddd;">
+                                        <h4 id="invoice_h4">
+                                            TOPLAM KDV :
+                                            <span id="">@outgoing.KDVToplam</span>
+                                        </h4>
+                                    </div>
+                                    <div style="border-bottom: 1px solid #ddd;">
+                                        <h4 id="invoice_h4">
+                                            GENEL TOPLAM :
+                                            <span id="">@outgoing.GenelToplam</span>
+                                        </h4>
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="" style="margin-top:30px;">
+                                @Html.TextAreaFor(model => model.Description, new { @class = "form-control m-input m-input--solid", @id = "customerinput", @placeholder = "Ek Açıklama Ekle", @type = "text", @style = "width:100%;background-color:#f4f5f8;border:none;", @rows = "5" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="m-portlet__foot m-portlet__foot--fit">
+                    <div class="m-form__actions m-form__actions">
+                        <div class="row" style="float:right;margin-right:10px">
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-6">
+                                <a class="btn btn-primary" href="@Url.Action("CICreate","Invoice")" data-form-method="post">Faturayı Kaydet</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <!--end::Form-->
+
+        </div>
+
+    </div>
+</div>
+<div class="modal fade" id="controlmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display:none;margin-top:200px">
+    <div class="modal-dialog" role="document">
+        <div class="m-alert m-alert--icon m-alert--icon-solid m-alert--outline alert alert-brand alert-dismissible fade show" role="alert">
+            <div class="m-alert__icon">
+                <i class="flaticon-exclamation-1"></i>
+                <span></span>
+            </div>
+            <div class="m-alert__text">
+                <strong>
+                    Lütfen!
+                </strong>
+                En az bir tane ürünü faturaya ekleyiniz.
+            </div>
+            <div class="m-alert__close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top:13px">
+                    <span aria-hidden="true">
+                        ×
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<input id="aaaaa" name="name" value=@outgoing.Ayar style="display:none" />
+<script src="~/Scripts/jquery-3.0.0.min.js"></script>
+<link href="~/Content/jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet" />
+<script src="~/Content/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+<script>
+    var controldeger = $("#aaaaa").val();
+    console.log(controldeger);
+    $("a[data-form-method='post']").click(function (event) {
+        event.preventDefault();
+        var element = $(this);
+        var action = element.attr("href");
+        if (controldeger == "1") {
+            element.closest("form").each(function () {
+                var form = $(this);
+                form.attr("action", action);
+                form.submit();
+            });
+        } else {
+            $("#controlmodal").modal('show');
+        }
+    });
+    $('#outgoing-div').keypress(function (event) {
+        if (event.keyCode === 10 || event.keyCode === 13)
+            event.preventDefault();
+    });
+
+    $("#productsearch").autocomplete({
+        source: function (request, response) {
+            $.get({
+                url: '@Url.Action("GetSearchProductValue", "Invoice")',
+                dataType: "json",
+                data: {
+                    search: request.term,
+                },
+                success: function (data) {
+                    $('.newProduct').hide();
+                    response($.map(data, function (item) {
+                        return { label: item.Name, value: item.Name };
+                    }));
+                },
+                error: function (xhr, status, error) {
+                    $('.newProduct').show();
+                    setTimeout(function () {
+                        $('.newProduct').hide();
+                    }, 6000);
+                }
+            });
+        }
+    });
+
+</script>

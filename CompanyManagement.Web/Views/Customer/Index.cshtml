@@ -1,0 +1,97 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<CompanyManagement.Data.Entities.Customer>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="main-container" style="margin-left:0px;margin-top:25px">
+    <h2 style="margin-left:30px">Müşteriler | Tedarikçiler </h2>
+    <div class="main-search">
+        <div class="m-content">
+            <div class="m-portlet m-portlet--mobile">
+                <div class="m-portlet__body">
+                    <!--begin: Search Form -->
+                    <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
+                        <div class="row align-items-center">
+                            <div class="col-xl-12">
+                                <div class="form-group m-form__group row align-items-center">
+                                    <div class="col-md-8">
+                                        <div class="m-input-icon m-input-icon--left">
+                                            <input type="text" id="MySearch" class="form-control m-input" placeholder="Müşterilerde veya Tedarikçilerde ara">
+                                            <span class="m-input-icon__icon m-input-icon__icon--left">
+                                                <span>
+                                                    <i class="la la-search"></i>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a class="createbtn btn btn-primary" href="/Customer/Create" style="" >
+                                            <i class="fa fa-plus"></i> YENİ MÜŞTERİ / TEDARİKÇİ EKLE
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--end: Search Form -->
+                    <!--begin: Datatable -->
+                    <table class="mytable" id="mytablecustomer">
+                        <thead>
+                            <tr>
+                                <th id="thmusteri">
+                                    MÜŞTERİ / TEDARİKÇİ
+                                </th>
+                                <th id="theposta">
+                                    E-POSTA
+                                </th>
+                                <th id="thtelefon">
+                                    TELEFON
+                                </th>
+                                <th id="thbakiye">
+                                    BAKİYE
+                                </th>
+                                <th id="thed"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var customer in Model)
+                            {
+                                <tr class="MySearch">
+                                    <td>
+                                        <a href="/Customer/Detail/@customer.Id">
+                                            @customer.UserName <br />
+                                            Yetkili : @customer.AuthorizedPerson
+                                        </a>
+                                    </td>
+                                    <td>@customer.Email</td>
+                                    <td>@customer.Phone</td>
+                                    <td>@customer.Budget</td>
+                                    <td>
+                                        <a href="/Customer/Edit/@customer.Id" class="btn btn-sm btn-warning">
+                                            <i class="flaticon-edit"></i>
+                                        </a>
+                                        <a href="/Customer/Delete/@customer.Id" class="btn btn-sm btn-danger">
+                                            <i class="fa fa-trash-o"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    @Html.PagedListPager(Model, _pageNo => Url.Action("Index", "Customer", new { pageNO = _pageNo }))
+                    <!--end: Datatable -->
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.0.0.min.js"></script>
+<script src="~/Scripts/MyPageJavascript.js"></script>

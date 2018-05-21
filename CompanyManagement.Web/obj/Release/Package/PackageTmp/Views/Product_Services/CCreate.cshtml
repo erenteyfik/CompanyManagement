@@ -1,0 +1,157 @@
+﻿@model CompanyManagement.Data.Entities.ServiceProduct
+@{
+    ViewBag.Title = "CCreate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .main-container {
+        width: 100%;
+        margin-top: 30px;
+        margin-left: 50px;
+        color: #565656;
+        font-weight: 700;
+    }
+
+    h2 {
+        font-weight: 600;
+        font-size: 24px;
+        margin-bottom: 20px
+    }
+
+
+    #headrow, #tablerow, #footerrow {
+        margin-top: 30px;
+        width: 90%;
+        border-radius: 0.25rem;
+        background-color: white;
+        margin-left: 0px;
+    }
+
+    #customerinput {
+        width: 80%;
+    }
+
+    h3 {
+        font-weight: 700;
+        font-size: 20px;
+        color: #565656;
+    }
+
+    .col-form-label {
+        font-weight: 700 !important;
+    }
+</style>
+
+
+<div class="main-container">
+
+    <h2>Hizmet/Ürün Ekle </h2>
+    <div class="row" id="headrow">
+        <div class="m-portlet" style="width:100%">
+            <!--begin::Form-->
+            @using (Html.BeginForm("CCreate", "Product_Services", null, FormMethod.Post, new { @class = "m-form m-form--label-align-right" }))
+            {
+                @*@Html.HiddenFor(model => model.CustomerId)*@
+                <div class="m-portlet__body">
+                    <div class="m-form__section m-form__section--first">
+                        <div style="margin-top:30px">
+                            <table class="table table-striped" id="">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            HİZMET / ÜRÜN
+                                        </th>
+                                        <th>
+                                            AÇIKLAMA
+                                        </th>
+                                        <th>
+                                            MİKTAR
+                                        </th>
+                                        <th>
+                                            BİRİM FİYAT
+                                        </th>
+                                        <th>
+                                            VERGİ
+                                        </th>
+                                        <th>
+                                            TOPLAM
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border-bottom:1px solid #565656;">
+                                        <td>
+                                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "Hizmet/Ürün", @style = "background-color:white", })
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(model => model.Description, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "Açıklama", @style = "background-color:white", })
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(model => model.Quantity, new { @class = "form-control m-input m-input--solid selectchangetotal", @type = "number", @placeholder = "1", @style = "background-color:white", @id = "selectquantity" })
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(model => model.UnitPrice, new { @class = "form-control m-input m-input--solid selectchangetotal", @type = "number", @placeholder = "Birim Fiyat", @style = "background-color:white", @id = "selectunitprice" })
+                                        </td>
+                                        <td>
+                                            <select class="form-control m-input m-input--solid selectchangetotal" style="background-color:white;border:none;width:100px;margin-top:3px" id="selecttax">
+                                                <option value="18">%18</option>
+                                                <option value="8">%8</option>
+                                                <option value="1">%1</option>
+                                                <option value="0">%0</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(model => model.Total, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "Toplam", @style = "background-color:white", @id = "selecttotal", })
+                                        </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="" style="margin-left:900px;margin-top:30px;">
+                                <div style="border-bottom: 1px solid #ddd;">
+                                    <h4 id="invoice_h4">
+                                        ARA TOPLAM :
+
+                                        <span id="spanaratoplam"></span>
+                                    </h4>
+                                </div>
+                                <div style="border-bottom: 1px solid #ddd;">
+                                    <h4 id="invoice_h4">
+                                        TOPLAM KDV : <span id="spankdv"></span>
+                                    </h4>
+                                </div>
+                                <div style="border-bottom: 1px solid #ddd;">
+                                    <h4 id="invoice_h4">
+                                        GENEL TOPLAM :
+                                        <span id="spantotal"></span>
+                                    </h4>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="m-portlet__foot m-portlet__foot--fit">
+                    <div class="m-form__actions m-form__actions">
+                        <div class="row">
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-6">
+                                <button type="submit" class="btn btn-primary">
+                                    FATURAYA EKLE
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <!--end::Form-->
+
+        </div>
+
+    </div>
+</div>

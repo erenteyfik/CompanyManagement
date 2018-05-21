@@ -1,0 +1,353 @@
+﻿@model CompanyManagement.Web.Models.ProjectDetailModel
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #headrow, #tablerow, #footerrow {
+        margin-top: 10px;
+        width: 100%;
+        border-radius: 0.25rem;
+        margin-left: -15px;
+    }
+
+    .main-container {
+        width: 100%;
+        margin-top: 30px;
+        margin-left: 30px;
+        color: #565656;
+        font-weight: 700;
+    }
+
+    h2 {
+        font-weight: 600;
+        font-size: 24px;
+        margin-bottom: 20px
+    }
+
+    h3 {
+        float: left;
+        width: 100%;
+        font-size: 16px;
+        color: #0373c3;
+        font-weight: 700;
+        margin-top: 35px;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+    }
+
+    #item1_title {
+        border-bottom: 2px solid #f5f5f5;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    #item1 {
+        background-color: white;
+        margin-top: -10px
+    }
+
+    .item1-desc {
+        margin-left: 10px;
+    }
+
+    .item1_body {
+        line-height: 24px;
+        font-size: 16px;
+    }
+
+    #item1_hr {
+    }
+
+    .bakiyebtn, .bakiyebtn:hover {
+        width: 300px;
+        color: #00c5dc;
+        background-color: white;
+        margin: 10px 10px;
+    }
+
+    .bakiye_body {
+        text-align: center;
+    }
+
+    .invoice-payment {
+        float: right;
+        font-size: 15px;
+        font-weight: 700;
+        color: white;
+    }
+
+    .invoice-a, .invoice-a:hover {
+        text-decoration: none;
+        outline: 0;
+        color: white;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    .task-div {
+        margin-left: -30px;
+        border-bottom: 2px solid #f5f5f5;
+        padding: 10px 10px;
+    }
+
+    td {
+        color: #888888;
+        line-height: 24px;
+        font-size: 14px;
+    }
+
+    th {
+        font-size: 16px;
+        color: #0373c3;
+        font-weight: 700;
+    }
+</style>
+
+<div class="main-container">
+
+    <h2>proje1 Projesi </h2>
+    <div class="main-search">
+
+
+        <div class="row" id="headrow">
+            <div class="col-xl-8">
+                <div class="m-portlet " id="item1">
+                    <div class="row" id="item1_title">
+                        <h3 style="float:left;margin-left:30px">
+                            PROJE AÇIKLAMASI
+                        </h3>
+                    </div>
+                    <div class="m-portlet__body">
+                        <div class="m-widget16">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="item1_body" style="color:#888888">
+                                        <div class="item1_detail">
+                                            <span class="item1-head">
+                                                @Html.Raw(Model.project.Description)
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet " id="item1">
+                    <div class="row" id="item1_title">
+                        <h3 style="float:left;margin-left:30px">
+                            Proje Notu Ekle
+                        </h3>
+                    </div>
+                    <div class="m-portlet__body">
+                        <div class="m-widget16">
+                            @using (Html.BeginForm("PRCreate", "Remind", null, FormMethod.Post, new { @class = "m-form m-form--label-align-right" }))
+                            {
+                                @Html.HiddenFor(model => model.project.Id)
+
+                                <div class="form-group m-form__group row">
+                                    <label class="col-lg-2 col-form-label" id="cpspan">
+                                        NOT BAŞLIĞI :
+                                    </label>
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(model => model.remind.Title, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "Not Başlığı", @id = "", @style = "width:111%" })
+                                    </div>
+                                </div>
+
+                                @Html.TextAreaFor(model => model.remind.Description, new { @class = "summernote", @type = "text", @placeholder = "Not Ekleyebilirsiniz", @id = "m_summernote_1" })
+
+                                <button type="submit" class="btn btn-primary" style="float:right;margin-top:10px">KAYDET</button>
+                            }
+                        </div>
+                        <div>
+                            <div class="remind_body">
+                                <ul>
+                                    @foreach (var remind in Model.reminds)
+                                    {
+                                        <li class="remind_li" style="margin: 20px 20px">
+                                            <div class="row">
+                                                <div class="col-md-11">
+                                                    <div>
+                                                        <span>@remind.WhoUser</span>
+                                                        <span>@remind.CreateTime.ToString("dd-MM-yyyy")</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <span>@remind.Title</span>
+                                                    </div>
+                                                    <div>
+                                                        <div class="">
+                                                            <span>@Html.Raw(remind.Description)</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="" style="">
+                                                        <a href="@Url.Action("PDelete", "Remind", new { id = remind.Id })" class="btn btn-sm btn-danger">
+                                                            <i class="fa fa-trash-o"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-xl-4" style="margin-top:10px">
+
+                <div class="m-portlet m--bg-primary m-portlet--bordered-semi m-portlet--skin-dark" style="">
+                    <div class="m-portlet__head" style=" border-bottom: 2px solid #f5f5f5;">
+                        <div class="row">
+                            <div class="m-portlet__head-title col-md-9">
+                                <h3 class="m-portlet__head-text">
+                                    PROJE MALİYETİ
+                                </h3>
+
+                            </div>
+                            <div class="col-md-3" style="margin-top:25px">
+                                <a href="/Project/AddCost/@Model.project.Id" style="color:white;">
+                                    <span class="flaticon-plus" id="plus_span"></span>
+                                </a>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="m-portlet__body">
+
+                        <ul>
+                            @*@foreach (var project in Model.projects)
+                                {*@
+                            <li class="">
+                                <div class="task-div" style="">
+                                    <div class="task-date">Start <span style="float:right"> project</span></div>
+
+                                    <div class="task-title">
+                                        <a href="/Project/Detail/" style="color:white">
+                                            Title
+                                        </a>
+                                        <span style="float:right">StateName</span>
+
+                                    </div>
+
+                                    <div class="task-state">
+                                        <button class="btn btn-sm btn-danger" style="color:white;padding:1px 30px;height:20px">TimeControl</button>
+                                        <a href="/Project/CDelete/ class="btn btn-sm" id="project-detail-a">
+                                            <i class="fa fa-trash-o"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            @*}*@
+
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+                <div class="m-portlet m--bg-danger m-portlet--bordered-semi m-portlet--skin-dark" style="">
+                    <div class="m-portlet__head" style=" border-bottom: 2px solid #f5f5f5;">
+                        <div class="row">
+                            <div class="m-portlet__head-title col-md-9">
+                                <h3 class="m-portlet__head-text">
+                                    SORUMLULAR
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="m-portlet__body">
+                        <ul>
+                            <li class="">
+                                <div class="invoice-div">
+                                    <span class="flaticon-list-2" style="margin-left:-30px"></span>
+                                    <a href="#" class="invoice-a">
+                                        <span>Sorumlu1</span>
+                                    </a>
+                                    <div class="invoice-payment">
+                                        @*<span class="fa fa-try"></span>*@
+                                        <span>@*333,33*@</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="invoice-div">
+                                    <span class="flaticon-list-2" style="margin-left:-30px"></span>
+                                    <a href="#" class="invoice-a">
+                                        <span>Sorumlu2</span>
+                                    </a>
+                                    <div class="invoice-payment">
+
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="invoice-div">
+                                    <span class="flaticon-list-2" style="margin-left:-30px"></span>
+                                    <a href="#" class="invoice-a">
+                                        <span>Sorumlu3</span>
+                                    </a>
+                                    <div class="invoice-payment">
+
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+
+                <div class="m-portlet  m-portlet--bordered-semi m-portlet--border-bottom-metal" style="height:230px">
+                    <div class="m-portlet__head" style=" border-bottom: 2px solid #f5f5f5;">
+                        <div class="row">
+                            <div class="m-portlet__head-title col-md-9">
+                                <h3 class="m-portlet__head-text">
+                                    SON HAREKETLER
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                        <ul>
+                            <li class="">
+                                <div class="invoice-div">
+                                    <span class="flaticon-list-2" style="margin-left:-30px"></span>
+                                    <a href="#" class="invoice-a">
+                                        <span style="color:black;">Loglar</span>
+                                    </a>
+
+                                </div>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

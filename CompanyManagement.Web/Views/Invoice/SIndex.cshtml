@@ -1,0 +1,116 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<CompanyManagement.Data.Entities.OutGoing>
+@{
+    ViewBag.Title = "SIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="m-subheader__title m-subheader__title--separator">
+                    Satış Faturaları
+                </h3>
+                <span>Toplam Tutar : <strong style="font-size:25px;color:darkblue;font-weight:700">566,40</strong></span>
+                <span>Kalan Bakiye : <strong style="font-size:25px;color:darkblue;font-weight:700">566,40</strong></span>
+            </div>
+        </div>
+    </div>
+    <!-- END: Subheader -->
+    <div class="m-content">
+
+        <div class="m-portlet m-portlet--mobile">
+            <div class="m-portlet__body">
+                <!--begin: Search Form -->
+                <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
+                    <div class="row align-items-center">
+                        <div class="col-xl-8 order-2 order-xl-1">
+                            <div class="form-group m-form__group row align-items-center">
+                                <div class="col-md-12">
+                                    <div class="m-input-icon m-input-icon--left">
+                                        <input type="text" class="form-control m-input" placeholder="Faturalarda ara" id="MySearch">
+                                        <span class="m-input-icon__icon m-input-icon__icon--left">
+                                            <span>
+                                                <i class="la la-search"></i>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 order-1 order-xl-2 m--align-right">
+                            <a href="/Invoice/SCreate" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                                <span>
+                                    <i class="la la-cart-plus"></i>
+                                    <span>
+                                        Yeni Satış Faturası Ekle
+                                    </span>
+                                </span>
+                            </a>
+                            <div class="m-separator m-separator--dashed d-xl-none"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--end: Search Form -->
+                <!--begin: Datatable -->
+                <table class="mytable" id="mytablecustomer">
+                    <thead>
+                        <tr>
+                            <th>
+                                FATURA AÇIKLAMASI
+                            </th>
+                            <th>
+                                İŞLEM TARİHİ
+                            </th>
+                            <th>
+                                ÖDEME TARİHİ
+                            </th>
+                            <th>
+                                TUTAR
+                            </th>
+                            <th>
+                                KALAN TUTAR
+                            </th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var sinvoice in Model)
+                        {
+                            <tr class="MySearch">
+                                <td>
+                                    <a href="/Invoice/CIDetail/@sinvoice.Id">
+                                        @sinvoice.Title <br />
+                                        Müşteri : @sinvoice.CustomerUserName
+                                    </a>
+                                </td>
+                                <td>@sinvoice.CreateTime.Value.ToString("dd-MMMM-yyyy")</td>
+                                <td>@sinvoice.ProcessTime.Value.ToString("dd-MMMM-yyyy")</td>
+                                <td>tutar</td>
+                                <td>kalan tutar</td>
+                                <td>
+                                    <a href="@Url.Action("SEdit", "Invoice", new { id = sinvoice.Id })" class="btn btn-sm btn-warning">
+                                        <i class="flaticon-edit"></i>
+                                    </a>
+                                    <a href="@Url.Action("SDelete", "Invoice", new { id = sinvoice.Id })" class="btn btn-sm btn-danger">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <!--end: Datatable -->
+                @Html.PagedListPager(Model, _pageNo => Url.Action("SIndex", "Invoice", new { pageNO = _pageNo }))
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.0.0.min.js"></script>
+<script src="~/Scripts/MyPageJavascript.js"></script>

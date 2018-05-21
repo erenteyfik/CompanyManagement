@@ -1,0 +1,128 @@
+﻿@media screen and (max-width:1500px) {
+    #thed {
+        width: 80px;
+    }
+    .createbtn {
+        width: 250px;
+        padding: 3px 15px
+    }
+
+    #item1,#item2,#item3{
+        width:700px;
+    }
+    .bakiyebtn{
+        width:200px;
+    }
+    .item1-head, #itemspan2 {
+        font-size: 12px
+    }
+    #itemspan{
+        margin-left:-55px
+    }
+}
+
+
+@media screen and (max-width:1400px) {
+    #item1, #item2, #item3 {
+        width: 670px;
+    }
+}
+@media screen and (max-width:1300px) {
+
+}
+@media screen and (max-width:1200px) {
+}
+
+@media screen and (max-width:1100px) {
+    #thed {
+        width: 100px;
+    }
+}
+
+@media screen and (max-width:870px) {
+    #thmusteri {
+        width: 80px;
+    }
+    #theposta, #thtelefon, #thbakiye {
+        width: 80px;
+        font-size:9px
+    }
+}
+
+
+@media screen and (max-width:770px) {
+    .createbtn {
+        width: 540px;
+        margin-top: 10px;
+    }
+
+    th {
+        font-size: 8px;
+    }
+
+    td {
+        padding: 6px;
+        font-size: 5px;
+    }
+
+    #thmusteri {
+        width: 120px;
+        font-size: 5px;
+    }
+
+    #theposta, #thtelefon {
+        width: 100px;
+        font-size:5px;
+    }
+    #thbakiye {
+        width:70px;
+    } 
+    #thed {
+        width: 80px;
+        margin-right: 10px
+    }
+
+    #mytablecustomer tbody tr > td, #mytablecustomer thead tr > th {
+        padding-left: 0px;
+    }
+}
+
+
+@media screen and (max-width:650px) {
+    .createbtn {
+        width: 300px;
+        margin-top: 10px;
+    }
+
+    th {
+        font-size: 8px;
+    }
+
+    td {
+        padding: 6px;
+        font-size: 5px;
+    }
+
+    #thmusteri {
+        width: 120px;
+        font-size: 5px;
+    }
+
+    #theposta, #thtelefon {
+        width: 100px;
+        font-size: 5px;
+    }
+
+    , #thbakiye {
+        width: 70px;
+    }
+
+    #thed {
+        width: 80px;
+        margin-right: 10px
+    }
+
+    #mytablecustomer tbody tr > td, #mytablecustomer thead tr > th {
+        padding-left: 0px;
+    }
+}

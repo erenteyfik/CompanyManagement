@@ -1,0 +1,249 @@
+﻿@model CompanyManagement.Web.Models.CashAccountDetailModel
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .item1_detail, #item1_title {
+        border-bottom: 2px solid #f5f5f5;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    #item1 {
+        background-color: white;
+        margin-top: -10px;
+        padding: 20px 20px;
+        margin-left: 30px;
+        width: 90%;
+    }
+</style>
+
+<div class="main-container">
+    <div class="row" style="margin-left: 30px;">
+        <div class="col-md-3">
+            <h2>Kasa Hesabı</h2>
+        </div>
+        <div class="col-md-3" style="margin-left:-100px;margin-top:5px">
+            <span>  Hesap Bakiyesi : @Model.OpeningAmount</span>
+        </div>
+
+    </div>
+
+    <div class="main-search">
+        <div class="row" id="headrow" style="">
+            <div class="col-xl-12">
+                <div class="m-portlet">
+                    <div class="row" style="text-align:center;padding:30px 30px" id="item1_title">
+                        <div class="col-md-6">
+                            <div class="">
+                                <h3 class="" style="float:left">
+                                    HESAP BİLGİLERİ
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div style="float:right;margin-bottom:15px;margin-right:80px" class=" btn btn-sm btn-warning">
+                                <span class="flaticon-edit" data-dropdown-toggle="hover" aria-expanded="true"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body" style="margin-top:-25px">
+                        <div class="m-widget16">
+                            <div class="row">
+                                <div class="col-md-6" >
+                                    <div class="item1_body">
+                                        <div class="item1_detail">
+                                            <span class="item1-head">
+                                                Hesap Tipi :
+                                            </span>
+                                            <span class="item1-desc">
+                                                @Model.AccountType
+                                            </span>
+                                        </div>
+                                        <div class="item1_detail">
+                                            <span class="item1-head">
+                                                Açılış Bakiyesi :
+                                            </span>
+                                            <span class="item1-desc">
+                                                @Model.OpeningAmount
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="item1_body">
+                                        <div class="item1_detail">
+                                            <span class="item1-head">
+                                                Para Birimi :
+                                            </span>
+                                            <span class="item1-desc">
+                                                Türk Lirası
+                                            </span>
+                                        </div>
+                                        <div class="item1_detail">
+                                            <span class="item1-head">
+                                                Hesap Bakiyesi :
+                                            </span>
+                                            <span class="item1-desc">
+                                                2222
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+
+               <div class="m-portlet m-portlet--mobile">
+                        <div class="m-portlet__body">
+                            <!--begin: Search Form -->
+                            <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
+                                <div class="row align-items-center">
+                                    <div class="col-xl-8 order-2 order-xl-1">
+                                        <span style="font-size:16px;font-weight:700;color:#0373c3">Hesap Hareketleri</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end: Search Form -->
+                            <!--begin: Datatable -->
+                            <table class="mytable" id="mytablecustomer">
+                                <thead>
+                                    <tr>
+                                        <th>İŞLEM TARİHİ</th>
+                                        <th>İŞLEM TÜRÜ</th>
+                                        <th style="width:340px">MÜŞTERİ | TEDARİKÇİ</th>
+                                        <th>BAKİYE</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @if (Model.Payment.OfType<CompanyManagement.Data.Entities.PIncoming>() != null)
+                                    {
+                                        foreach (var payment in Model.Payment.OfType<CompanyManagement.Data.Entities.PIncoming>())
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <a href="/Collecting/Detail/@payment.Id">
+                                                        @payment.CreateTime.ToString("dd-MMMM-yyyy")
+                                                    </a>
+                                                </td>
+                                                <td>TAHSİLAT</td>
+                                                <td>@payment.CustomerUserName</td>
+                                                <td>@payment.Total</td>
+                                                <td>    
+                                                    <a href="/Collecting/Delete/@payment.Id" class="btn btn-sm btn-danger">
+                                                        <i class="fa fa-trash-o"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                    @if (Model.Payment.OfType<CompanyManagement.Data.Entities.POutGoing>() != null)
+                                    {
+                                        foreach (var payment in Model.Payment.OfType<CompanyManagement.Data.Entities.POutGoing>())
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <a href="/Payment/Detail/@payment.Id">
+                                                        @payment.CreateTime.ToString("dd-MMMM-yyyy")
+                                                    </a>
+                                                </td>
+                                                <td>ÖDEME</td>
+                                                <td>@payment.CustomerUserName</td>
+                                                <td>@payment.Total</td>
+                                                <td>
+                                                    <a href="/Payment/Delete/@payment.Id" class="btn btn-sm btn-danger">
+                                                        <i class="fa fa-trash-o"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                            <!--end: Datatable -->
+                        </div>
+                    </div>
+              
+                @*<div class="m-portlet " id="item1">
+                    <div class="row" style="text-align:center" id="item1_title">
+                        <div class="col-md-6">
+                            <div class="">
+                                <h3 class="" style="margin-left:-30px">
+                                    Hesap  Notu Ekle
+                                </h3>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="m-portlet__body">
+                        <div class="m-widget16">
+                            @using (Html.BeginForm("CashRCreate", "Remind", null, FormMethod.Post, new { @class = "m-form m-form--label-align-right" }))
+                            {
+                                @Html.HiddenFor(model => model.Id)
+
+                                <div class="form-group m-form__group row">
+                                    <label class="col-lg-2 col-form-label">
+                                        NOT BAŞLIĞI :
+                                    </label>
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(model => model.remind.Title, new { @class = "form-control m-input m-input--solid", @type = "text", @placeholder = "Not Başlığı", @id = "", @style = "width:111%" })
+                                    </div>
+                                </div>
+
+                                @Html.TextAreaFor(model => model.remind.Description, new { @class = "summernote", @type = "text", @placeholder = "Not Ekleyebilirsiniz", @id = "m_summernote_1" })
+
+                                <button type="submit" class="btn btn-primary" style="float:right;margin-top:10px">KAYDET</button>
+                            }
+                        </div>
+                        <div>
+                            <div class="remind_body">
+                                <ul>
+                                    @foreach (var remind in Model.Reminds)
+                                    {
+                                        <li class="remind_li" style="margin: 20px 20px">
+                                            <div class="row">
+                                                <div class="col-md-11">
+                                                    <div>
+                                                        <span>@remind.WhoUser</span>
+                                                        <span>@remind.CreateTime.ToString("dd-MM-yyyy")</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <span>@remind.Title</span>
+                                                    </div>
+                                                    <div>
+                                                        <div class="">
+                                                            <span>@Html.Raw(remind.Description)</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="" style="">
+                                                        <a href="@Url.Action("CDelete", "Remind", new { id = remind.Id })" class="btn btn-sm btn-danger">
+                                                            <i class="fa fa-trash-o"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
